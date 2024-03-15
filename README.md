@@ -16,5 +16,13 @@ We're excited to share Stack360, our robust web-based business process software!
 
 See [Stack360.io](https://stack360.io)
 
+Stack360 is built with:
+
+* Java and Groovy
+* SQL
+* HTML / CSS / JavaScript
+* Web services
+* Microservices
+
 A system manual for the Stack360 system is being published on Amazon.com on April 1, 2024.
 This repo will be populated on or soon after that date.
