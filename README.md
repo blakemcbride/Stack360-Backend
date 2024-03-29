@@ -1,3 +1,4 @@
+![](stack360-dots3-24.png)
 
 # STACK360 Web-based Business Process Software
 
