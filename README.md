@@ -2,7 +2,7 @@
 
 # STACK360 Web-based Business Process Software
 
-Comprehensive Business Process Software for Service-oriented Businesses.
+Comprehensive Business Process Software for Service-oriented Organizations.
 
 We're excited to share Stack360, our robust web-based business process software! Stack360 has been a reliable solution in production for over a decade, offering a suite of integrated functions tailored for service-oriented organizations. This comprehensive system streamlines various business operations, including:
 
@@ -33,3 +33,4 @@ This repo will be populated on or soon after that date.
 Please help fund this project at
 [https://www.gofundme.com/stack360](https://www.gofundme.com/stack360)
 
+Home for this project is [https://github.com/blakemcbride/Stack360-Backend](https://github.com/blakemcbride/Stack360-Backend)
