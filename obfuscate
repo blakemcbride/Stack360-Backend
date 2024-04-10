@@ -1,0 +1,66 @@
+#
+
+#  Obfuscate Arahant using ProGuard 6.0.3
+
+PROGUARD=/opt/proguard/lib/proguard.jar
+
+if [ ! -f $PROGUARD ]; then
+	echo ProGuard obfuscator cannot be found at $PROGUARD
+	exit 1
+fi
+
+if [ ! -f dist/Arahant.war ]; then
+	echo Arahant.war does not exist.  You must build first.
+	exit 1
+fi
+
+cp arahant.pro dist
+cd dist
+
+echo Removing old files
+rm -rf SecureArahant.map SecureArahantWithoutLibs.war Secure Arahant libs ArahantSharedLibs.war ArahantWithoutLibs.war
+
+echo Unpacking Arahant.war
+mkdir Arahant
+cd Arahant
+jar xf ../Arahant.war
+echo Moving libraries
+cd WEB-INF/lib
+mkdir ../../../libs
+mkdir save
+mv abcl.jar save
+mv *.jar ../../../libs
+mv save/* .
+rmdir save
+cd ../..
+
+echo Creating ArahantWithoutLibs.war
+jar cf ../ArahantWithoutLibs.war *
+cd ..
+
+echo Creating Secure tree
+mkdir Secure
+cd Secure
+(cd ../Arahant ; tar cf - .) | tar xf -
+# jar xf ../ArahantWithoutLibs.war
+echo Removing unobfuscated class files
+find . -name '*.class' -exec rm \{\} \;
+cd ..
+
+java -Xmx1G -jar $PROGUARD @arahant.pro
+
+echo Creating SecureArahantWithoutLibs.war
+cd Secure
+jar cf ../SecureArahantWithoutLibs.war *
+cd ..
+
+echo Creating ArahantSharedLibs.war
+cd libs
+#rm DRCMessaging.jar
+jar cf ../ArahantSharedLibs.war *
+cd ..
+
+echo Removing work directories
+rm -rf Secure Arahant libs arahant.pro
+
+cd ..

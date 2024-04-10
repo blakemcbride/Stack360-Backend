@@ -1,0 +1,43 @@
+Documentation for North America Administrators benefits
+
+1.  There should be a single vendor defined as interface = North America 
+    Administrators
+
+2.  The Group Identifier in the interface is taken from the Account field of
+    the Vendor
+
+3.  Multiple benefits can be associated to that one vendor.  The type of the 
+    benefit is determined by the Internal ID field for each benefit.  The 
+    expected ID's (which is not case sensitive) is:
+
+    a. Medical
+    b. Dental
+    c. Vision
+    d. Rxd
+    e. Flex Medical
+    f. Flex Dependent
+
+    At least one must be defined.  There should be no duplicates.
+    Naturally, there should be appropriate benefit configs setup for each 
+    benefit.
+
+4.  The Participant ID (Family ID) is a problem because multiple benefits are
+    represented by a single line.  This ID must be associated to the employee
+    benefit and not the employee in order to support multiple providers.  So
+    the Participant ID is taken from the employee's benefit association in the
+    field labeled Insurance ID.  I look for the first applicable benefit with an
+    existing ID and I use that.  So, at least one of the applicable benefits
+    must have a valid Insurance ID.  If multiple are defined they must be and
+    are assumed to be the same.
+
+5.  Medical Plan is taken from the Benefit's Plan
+
+6.  Medical Enrollment is taken from the Benefit Config's Additional Information
+
+7.  PPO Network is taken form the Medical benefit's Plan Name
+
+8.  In terms of 5 & 6, the same is true for dental, vision, etc.
+
+9.  Flex Medical and Flex Dependent types will be incorrectly reported because
+    we don't have the relevant information (pay schedules, deduction dates,
+    first deduction date, etc.)

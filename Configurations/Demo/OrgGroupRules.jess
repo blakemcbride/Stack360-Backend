@@ -1,0 +1,77 @@
+
+(defrule InHierarchy
+	(org_group_hierarchy (parent_group_id ?pgi)(child_group_id ?cgi))
+	(org_group (valid true)(org_group_id ?pgi))
+	?og <- (org_group (org_group_id ?cgi)(valid nil))
+	=>
+	(modify ?og (valid true))
+)
+
+(defrule makeActive
+	(make_active ?ogi)
+	?og <- (org_group (org_group_id ?ogi)(valid nil))
+	=>
+	(modify ?og (valid true))
+)
+
+
+(defrule orgActive
+	(org_group (valid true)(org_group_id ?ogi))
+	(org_group_hierarchy (parent_group_id ?ogi)(child_group_id ?cgi))
+	=>
+	(printout t "org group active " ?ogi crlf)
+)
+
+(defrule activeAssociation
+	(org_group (valid true)(org_group_id ?ogi))
+	?oga <- (org_group_association (org_group_id ?ogi)(valid nil))
+	=>
+	(modify ?oga (valid true))
+)
+
+(defrule activePerson
+	(org_group_association (valid true)(person_id ?pid))
+	?p<-(person (valid nil)(person_id ?pid))
+	(or
+		(not (exists (employee (person_id ?pid))))
+		(not (exists (checkActive)))
+	)
+	=>
+	(modify ?p (valid true))	
+)
+(defrule activeEmployee
+	(checkActive)
+	(org_group_association (valid true)(person_id ?pid))
+	(employee (valid nil)(person_id ?pid))
+	?p<-(person (valid nil)(person_id ?pid))
+	(not (exists (hr_empl_status_history (employee_id ?pid))))
+	=>
+	(modify ?p (valid true))	
+)
+
+(defrule activeEmployee2
+	(checkActive)
+	(org_group_association (valid true)(person_id ?pid))
+	(employee (valid nil)(person_id ?pid))
+	?p<-(person (valid nil)(person_id ?pid))
+	(hr_empl_status_history (employee_id ?pid)(status_id ?sid))
+	(hr_employee_status (status_id ?sid)(active "Y"))
+	=>
+	(modify ?p (valid true))	
+)
+
+
+(defrule activeEmployee2
+	(checkActive)
+	(org_group_association (valid true)(person_id ?pid))
+	(employee (valid nil)(person_id ?pid))
+	?p<-(person (valid nil)(person_id ?pid))
+	(hr_empl_status_history (employee_id ?pid)(status_id ?sid)(effective_date ?ed))
+	(currentDate ?cd)
+	(test (< (- ?cd ?ed) 60))
+	=>
+	(modify ?p (valid true))	
+)
+
+;need to add rule for inactive older than 60 days
+

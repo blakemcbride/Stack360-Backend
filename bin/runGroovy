@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# This script allows the running of a Groovy file in the context of the
+# entire system.
+
+ROOT_PATH=$(realpath $(dirname "$0")/..)
+
+if [ -f $ROOT_PATH/lib/Kiss.jar ]; then
+    # development environment
+	JAR_PATH=${ROOT_PATH}/lib
+	CLASSES_PATH=${ROOT_PATH}/build/web/WEB-INF/classes
+else
+    # runtime environment
+	JAR_PATH=${ROOT_PATH}/WEB-INF/lib
+	CLASSES_PATH=${ROOT_PATH}/WEB-INF/classes
+fi
+
+
+# echo $JAR_PATH
+
+THE_CLASSPATH=.
+for i in `ls $JAR_PATH/*.jar`
+do
+	THE_CLASSPATH=${THE_CLASSPATH}:${i}
+done
+
+if [ ! -f $ROOT_PATH/lib/Kiss.jar ]; then
+    # runtime environment
+    # add shared jar files
+	for i in `ls $ROOT_PATH/../../shared/lib/*.jar`
+	do
+		THE_CLASSPATH=${THE_CLASSPATH}:${i}
+	done
+fi
+
+
+THE_CLASSPATH=${THE_CLASSPATH}:${CLASSES_PATH}
+
+# echo $THE_CLASSPATH
+
+java -cp ${THE_CLASSPATH} groovy.ui.GroovyMain "$@"
+
+

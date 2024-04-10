@@ -1,0 +1,4 @@
+#
+
+grep 'CREATE TABLE' ArahantSchema.sql |sed 's/ (//' |sed 's/CREATE TABLE //'
+

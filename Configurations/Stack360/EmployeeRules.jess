@@ -1,0 +1,28 @@
+(defrule activeEmployee
+	?p<-(employee (valid nil)(person_id ?pid))
+	(not (exists (hr_empl_status_history (employee_id ?pid))))
+	=>
+	(modify ?p (valid true))	
+)
+
+(defrule activeEmployee2
+	?p<-(employee (valid nil)(person_id ?pid))
+	(hr_empl_status_history (employee_id ?pid)(status_id ?sid))
+	(hr_employee_status (status_id ?sid)(active "Y"))
+	=>
+	(modify ?p (valid true))	
+)
+
+
+
+;need to add rule for inactive older than 60 days
+
+(defrule activeEmployee3
+	?p<-(employee (valid nil)(person_id ?pid))
+	(hr_empl_status_history (employee_id ?pid)(status_id ?sid)(effective_date ?ed))
+	(currentDate ?cd)
+	(test (< (- ?cd ?ed) 60))
+	=>
+	(modify ?p (valid true))	
+)
+

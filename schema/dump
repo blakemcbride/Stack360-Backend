@@ -1,0 +1,10 @@
+#
+
+if [ -z "$1" ]  ||  [ -z "$2" ]; then
+   echo "Usage:  dump  [database]  [file.sql]"
+   exit 1
+else 
+     pg_dump -h localhost -s $1 -U postgres > $2
+#     delcr $2
+#     addcr $2
+fi

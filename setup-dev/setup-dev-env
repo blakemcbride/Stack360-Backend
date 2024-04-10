@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# This is the script that runs the whole process.
+# It must be run as root or sudo
+#
+
+if [ ! -f .phase-1-complete ]; then
+	echo Performing phase 1
+	if ! apt update; then
+		echo apt update failed
+		exit 100
+	fi
+	if ! apt-get -y dist-upgrade; then
+		echo apt dist-upgrade failed
+		exit 100
+	fi
+	touch .phase-1-complete
+	echo
+	echo "Phase 1 complete; Please reboot using 'shutdown -r now' and then re-run this script."
+	exit 0
+fi
+
+# make sure file permissions are right
+chmod 755 setup-* load-*
+chmod a+r . *
+
+# get rid of old kernels
+apt -y autoremove
+
+
+if ! apt -y install ttf-mscorefonts-installer; then
+	echo apt install ttf-mscorefonts-installer failed.
+	exit 100
+fi
+fc-cache -f -v
+
+# google chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+apt update
+apt -y install google-chrome-stable
+
+
+if ! apt -y install groff; then
+	echo apt install groff failed.
+	exit 100
+fi
+
+if ! apt -y install openjdk-17-jdk; then
+	echo apt install openjdk-17-jdk failed.
+	exit 100
+fi
+update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+update-alternatives --set javac /usr/lib/jvm/java-17-openjdk-amd64/bin/javac
+
+
+if ! ./setup-postgres; then
+	exit 100
+fi
+
+
+# Install pgAdmin 4
+# See pgadmin.org
+curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
+SYSTEM=`lsb_release -cs`
+# Perform LinuxMint to Ubuntu name conversion
+if [ $SYSTEM = 'vanessa' ] || [ $SYSTEM = 'vera' ] || [ $SYSTEM = 'victoria' ]; then 
+    SYSTEM='jammy'
+elif [ $SYSTEM = 'una' ] || [ $SYSTEM = 'uma' ] || [ $SYSTEM = 'ulyssa' ] || [ $SYSTEM = 'ulyana' ]; then
+    SYSTEM='focal'
+elif [ $SYSTEM = 'tara' ] || [ $SYSTEM = 'tessa' ] || [ $SYSTEM = 'tina' ] || [ $SYSTEM = 'tricia' ]; then
+    SYSTEM='bionic'
+fi
+sh -c "echo deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$SYSTEM pgadmin4 main >/etc/apt/sources.list.d/pgadmin4.list && apt update"
+apt update
+apt -y install pgadmin4-desktop
+
+# Groovy
+pushd /opt
+wget https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-4.0.13.zip
+unzip apache-groovy-binary-*.zip
+ln -s groovy-* groovy
+rm apache-groovy-*
+eval "pushd ~$USER"
+echo "export PATH=$PATH:/opt/groovy/bin" >>.bashrc
+popd
+popd
+
+
+echo
+echo You will need to install intellij ultimate from https://www.jetbrains.com
+echo
+echo Done
+
+exit 0
+
+

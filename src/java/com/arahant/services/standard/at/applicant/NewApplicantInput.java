@@ -1,0 +1,682 @@
+/*
+    STACK360 - Web-based Business Management System
+    Copyright (C) 2024 Arahant LLC
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see https://www.gnu.org/licenses.
+*/
+
+/*
+ *
+ *  Created on Feb 8, 2007
+ */
+
+package com.arahant.services.standard.at.applicant;
+
+import com.arahant.services.TransmitInputBase;
+import com.arahant.business.BApplicant;
+import com.arahant.annotation.Validation;
+import com.arahant.business.BApplicantAnswer;
+import com.arahant.business.BApplicantContact;
+import com.arahant.business.BApplicantStatus;
+import com.arahant.business.BApplication;
+import com.arahant.utils.Mail;
+
+public class NewApplicantInput extends TransmitInputBase {
+
+    @Validation(table = "address", column = "city", required = false)
+    private String city;
+    @Validation(table = "address", column = "state", required = false)
+    private String stateProvince;
+    @Validation(table = "address", column = "country_code", required = false)
+    private String country;
+    @Validation(table = "address", column = "county", required = false)
+    private String county;
+    @Validation(table = "address", column = "zip", required = false)
+    private String zipPostalCode;
+    @Validation(table = "address", column = "street", required = false)
+    private String addressLine1;
+    @Validation(table = "address", column = "street2", required = false)
+    private String addressLine2;
+    @Validation(type = "date", required = false)
+    private int dob;
+    @Validation(table = "phone", column = "phone_number", required = false)
+    private String homePhone;
+    @Validation(table = "phone", column = "phone_number", required = false)
+    private String mobilePhone;
+    @Validation(table = "phone", column = "phone_number", required = false)
+    private String workFax;
+    @Validation(table = "phone", column = "phone_number", required = false)
+    private String workPhone;
+    @Validation(table = "person", column = "fname", required = true)
+    private String firstName;
+    @Validation(table = "person", column = "lname", required = true)
+    private String lastName;
+    @Validation(table = "person", column = "mname", required = false)
+    private String middleName;
+    @Validation(table = "person", column = "nickname", required = false)
+    private String nickName;
+    @Validation(table = "person", column = "personal_email", required = false)
+    private String personalEmail;
+    @Validation(table = "person", column = "sex", required = false)
+    private String sex;
+    @Validation(table = "person", column = "ssn", required = false)
+    private String ssn;
+    @Validation(min = 0, max = 16, required = true)
+    private String applicantStatusId;
+    @Validation(min = 0, max = 16, required = true)
+    private String applicantSourceId;
+    @Validation(table = "applicant", column = "comments", required = false)
+    private String comments;
+    @Validation(type = "date", required = true)
+    private int firstAwareDate;
+    @Validation(required = true, min = 0, max = 16)
+    private String companyId;
+    //	@Validation (required=false, type="array")
+//	private String []jobTypeIds;
+    @Validation(required = false, type = "array")
+    private NewApplicantInputApplication[] applications;
+    @Validation(required = false, type = "array")
+    private NewApplicantInputContacts[] contacts;
+    @Validation(table = "person", column = "citizenship", required = false)
+    private String citizenship;
+
+    private boolean i9Completed = false;
+    private boolean i9Part1 = false;
+    private boolean i9Part2 = false;
+
+    @Validation(table = "person", column = "visa", required = false)
+    private String visa;
+    @Validation(table = "person", column = "visa_status_date", required = false, type = "data")
+    private int visaStatusDate;
+    @Validation(table = "person", column = "visa_exp_date", required = false, type = "data")
+    private int visaExpirationDate;
+    @Validation(required = false, type = "array")
+    private NewApplicantInputQuestion[] questionDetails;
+    @Validation(required = false)
+    private String eeoRaceId;
+    @Validation(table = "person", column = "military_branch", required = false)
+    private String militaryBranch;
+    @Validation(required = false)
+    private int enlistFromMonth;
+    @Validation(required = false)
+    private int enlistToMonth;
+    @Validation(required = false)
+    private int enlistFromYear;
+    @Validation(required = false)
+    private int enlistToYear;
+    @Validation(table = "person", column = "military_rank", required = false)
+    private String dischargeRank;
+    @Validation(type = "date", required = true)
+    private int dateAvailable;
+    @Validation(table = "person", column = "military_discharge_type", required = false)
+    private String dischargeType;
+    @Validation(table = "person", column = "convicted_of_crime", required = false)
+    private String convicted;
+    @Validation(table = "person", column = "convicted_of_what", required = false)
+    private String convictedDescription;
+    @Validation(table = "applicant", column = "desired_salary", required = false)
+    private int desiredSalary;
+    @Validation(table = "person", column = "worked_for_company_before", required = true)
+    private String workedFor;
+    @Validation(table = "person", column = "worked_for_company_when", required = false)
+    private String workedForWhen;
+    @Validation(table = "person", column = "military_discharge_explain", required = false)
+    private String dischargeExplain;
+    @Validation(required = true)
+    private boolean sendEmail;
+
+
+    void setData(BApplicant bc) {
+        bc.setCity(city);
+        bc.setState(stateProvince);
+        bc.setZip(zipPostalCode);
+        bc.setStreet(addressLine1);
+        bc.setStreet2(addressLine2);
+        bc.setCountry(country);
+        bc.setCounty(county);
+        bc.setDob(dob);
+        bc.setHomePhone(homePhone);
+        bc.setMobilePhone(mobilePhone);
+        bc.setWorkFax(workFax);
+        bc.setWorkPhone(workPhone);
+        bc.setFirstName(firstName);
+        bc.setLastName(lastName);
+        bc.setMiddleName(middleName);
+        bc.setNickName(nickName);
+        bc.setPersonalEmail(personalEmail);
+        bc.setSex(sex);
+        bc.setSsn(ssn);
+        bc.setApplicantStatusId(applicantStatusId);
+        bc.setApplicantSourceId(applicantSourceId);
+        bc.setComments(comments);
+        bc.setFirstAwareDate(firstAwareDate);
+        bc.setCompanyId(companyId);
+        bc.setCitizenship(citizenship);
+
+		/*
+		     Try to support the Flash and HTML interfaces (old and new schema).
+		     When the Flash front-end was built, it used i9Completed.  i9Completed
+		     was later split into i9Part1 and i9Part2.  The HTML front-end uses those
+		     but the Flash still depends on i9Completed.  This code is an attempt to support
+		     both interfaces assuming that the HTML version would be used in production.
+		 */
+        bc.setI9Part1(false);
+        bc.setI9Part2(false);
+        if (i9Completed) {
+            bc.setI9Part1(i9Completed);
+            bc.setI9Part2(i9Completed);
+        } else {
+            if (i9Part1)
+                bc.setI9Part1(i9Part1);
+            if (i9Part2)
+                bc.setI9Part1(i9Part2);
+        }
+
+        bc.setVisa(visa);
+        bc.setVisaStatusDate(visaStatusDate);
+        bc.setVisaExpirationDate(visaExpirationDate);
+        bc.setRaceId(eeoRaceId);
+
+        if (!isEmpty(militaryBranch)) {
+            bc.setMilitaryBranch(militaryBranch.charAt(0));
+            bc.setMilitaryStartDate((enlistFromYear * 100) + enlistFromMonth);
+            bc.setMilitaryEndDate((enlistToYear * 100) + enlistToMonth);
+            bc.setMilitaryRank(dischargeRank);
+        }
+
+        if (!isEmpty(dischargeType)) {
+            bc.setMilitaryDischargeType(dischargeType.charAt(0));
+            bc.setMilitaryDischargeExplain(dischargeExplain);
+        }
+
+        if (!isEmpty(convicted)) {
+            bc.setConvictedOfCrime(convicted.charAt(0));
+            bc.setConvictedOfWhat(convictedDescription);
+        }
+
+        bc.setDateAvailable(dateAvailable);
+        bc.setDesiredSalary(desiredSalary);
+        bc.setWorkedForCompanyBefore(workedFor.charAt(0));
+        bc.setWorkedForCompanyWhen(workedForWhen);
+
+        for (int loop = 0; loop < getApplications().length; loop++) {
+            BApplication app = new BApplication();
+            app.create();
+            app.setApplicant(bc);
+            app.setDate(applications[loop].getDate());
+            app.setStatusId(applications[loop].getStatusId());
+            bc.addPendingInsert(app);
+
+            for (int loop2 = 0; loop2 < applications[loop].getContacts().length; loop2++) {
+                BApplicantContact con = new BApplicantContact();
+                con.create();
+                con.setApplication(app);
+                con.setDate(applications[loop].getContacts()[loop2].getDate());
+                con.setTime(applications[loop].getContacts()[loop2].getTime());
+                con.setDescription(applications[loop].getContacts()[loop2].getDescription());
+                con.setMode(applications[loop].getContacts()[loop2].getMode());
+                con.setStatus(applications[loop].getContacts()[loop2].getStatus());
+                app.addPendingInsert(con);
+            }
+        }
+
+        for (int loop = 0; loop < getContacts().length; loop++) {
+            BApplicantContact con = new BApplicantContact();
+            con.create();
+            con.setApplicant(bc);
+            con.setDate(contacts[loop].getDate());
+            con.setTime(contacts[loop].getTime());
+            con.setDescription(contacts[loop].getDescription());
+            con.setMode(contacts[loop].getMode());
+            con.setStatus(contacts[loop].getStatus());
+            bc.addPendingInsert(con);
+        }
+        for (int loop = 0; loop < getQuestionDetails().length; loop++) {
+            NewApplicantInputQuestion q = getQuestionDetails()[loop];
+
+            if (!bc.hasPendingAnswer(q.getId())) {
+                BApplicantAnswer bans = new BApplicantAnswer();
+                bans.create();
+                bans.setQuestionId(q.getId());
+                bans.setAnswer(q.getAnswerType(), q.getTextBasedAnswer(), q.getNumberBasedAnswer(), q.getListBasedAnswerId());
+                bans.setApplicant(bc);
+                bc.addPendingInsert(bans);
+            }
+        }
+
+        if (sendEmail && !isEmpty(bc.getPersonalEmail())) {
+            BApplicantStatus bs = new BApplicantStatus(applicantStatusId);
+            Mail.send(bs.getEmailSource(), bc.getPersonalEmail(), bs.getEmailSubject(), bs.getEmailText());
+        }
+    }
+
+    public NewApplicantInputApplication[] getApplications() {
+        if (applications == null)
+            applications = new NewApplicantInputApplication[0];
+        return applications;
+    }
+
+    public void setApplications(NewApplicantInputApplication[] applications) {
+        this.applications = applications;
+    }
+
+    /*	public String[] getJobTypeIds() {
+            if (jobTypeIds==null)
+                jobTypeIds=new String[0];
+            return jobTypeIds;
+        }
+
+        public void setJobTypeIds(String[] jobTypeIds) {
+            this.jobTypeIds = jobTypeIds;
+        }
+    */
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public String getStateProvince() {
+        return stateProvince;
+    }
+
+    public void setStateProvince(String stateProvince) {
+        this.stateProvince = stateProvince;
+    }
+
+    public String getZipPostalCode() {
+        return zipPostalCode;
+    }
+
+    public void setZipPostalCode(String zipPostalCode) {
+        this.zipPostalCode = zipPostalCode;
+    }
+
+
+    public int getDob() {
+        return dob;
+    }
+
+    public void setDob(int dob) {
+        this.dob = dob;
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public void setHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+
+    public String getWorkFax() {
+        return workFax;
+    }
+
+    public void setWorkFax(String workFax) {
+        this.workFax = workFax;
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
+    }
+
+    public void setWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getPersonalEmail() {
+        return personalEmail;
+    }
+
+    public void setPersonalEmail(String personalEmail) {
+        this.personalEmail = personalEmail;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
+
+    public String getApplicantStatusId() {
+        return applicantStatusId;
+    }
+
+    public void setApplicantStatusId(String applicantStatusId) {
+        this.applicantStatusId = applicantStatusId;
+    }
+
+    public String getApplicantSourceId() {
+        return applicantSourceId;
+    }
+
+    public void setApplicantSourceId(String applicantSourceId) {
+        this.applicantSourceId = applicantSourceId;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public int getFirstAwareDate() {
+        return firstAwareDate;
+    }
+
+    public void setFirstAwareDate(int firstAwareDate) {
+        this.firstAwareDate = firstAwareDate;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
+
+    public NewApplicantInputContacts[] getContacts() {
+        if (contacts == null)
+            contacts = new NewApplicantInputContacts[0];
+        return contacts;
+    }
+
+    public void setContacts(NewApplicantInputContacts[] contacts) {
+        this.contacts = contacts;
+    }
+
+    public String getCitizenship() {
+        return citizenship;
+    }
+
+    public void setCitizenship(String citizenship) {
+        this.citizenship = citizenship;
+    }
+
+    public boolean getI9Completed() {
+        return i9Completed;
+    }
+
+    public void setI9Completed(boolean i9Completed) {
+        this.i9Completed = i9Completed;
+    }
+
+    public boolean isI9Part1() {
+        return i9Part1;
+    }
+
+    public void setI9Part1(boolean i9Part1) {
+        this.i9Part1 = i9Part1;
+    }
+
+    public boolean isI9Part2() {
+        return i9Part2;
+    }
+
+    public void setI9Part2(boolean i9Part2) {
+        this.i9Part2 = i9Part2;
+    }
+
+    public String getVisa() {
+        return visa;
+    }
+
+    public void setVisa(String visa) {
+        this.visa = visa;
+    }
+
+    public int getVisaExpirationDate() {
+        return visaExpirationDate;
+    }
+
+    public void setVisaExpirationDate(int visaExpirationDate) {
+        this.visaExpirationDate = visaExpirationDate;
+    }
+
+    public int getVisaStatusDate() {
+        return visaStatusDate;
+    }
+
+    public void setVisaStatusDate(int visaStatusDate) {
+        this.visaStatusDate = visaStatusDate;
+    }
+
+    public NewApplicantInputQuestion[] getQuestionDetails() {
+        if (questionDetails == null)
+            questionDetails = new NewApplicantInputQuestion[0];
+        return questionDetails;
+    }
+
+    public void setQuestionDetails(NewApplicantInputQuestion[] questionDetails) {
+        this.questionDetails = questionDetails;
+    }
+
+    public String getEeoRaceId() {
+        return eeoRaceId;
+    }
+
+    public void setEeoRaceId(String eeoRaceId) {
+        this.eeoRaceId = eeoRaceId;
+    }
+
+    public int getDateAvailable() {
+        return dateAvailable;
+    }
+
+    public void setDateAvailable(int dateAvailable) {
+        this.dateAvailable = dateAvailable;
+    }
+
+    public String getDischargeRank() {
+        return dischargeRank;
+    }
+
+    public void setDischargeRank(String dischargeRank) {
+        this.dischargeRank = dischargeRank;
+    }
+
+    public String getDischargeType() {
+        return dischargeType;
+    }
+
+    public void setDischargeType(String dischargeType) {
+        this.dischargeType = dischargeType;
+    }
+
+    public int getEnlistFromMonth() {
+        return enlistFromMonth;
+    }
+
+    public void setEnlistFromMonth(int enlistFromMonth) {
+        this.enlistFromMonth = enlistFromMonth;
+    }
+
+    public int getEnlistFromYear() {
+        return enlistFromYear;
+    }
+
+    public void setEnlistFromYear(int enlistFromYear) {
+        this.enlistFromYear = enlistFromYear;
+    }
+
+    public int getEnlistToMonth() {
+        return enlistToMonth;
+    }
+
+    public void setEnlistToMonth(int enlistToMonth) {
+        this.enlistToMonth = enlistToMonth;
+    }
+
+    public int getEnlistToYear() {
+        return enlistToYear;
+    }
+
+    public void setEnlistToYear(int enlistToYear) {
+        this.enlistToYear = enlistToYear;
+    }
+
+    public String getMilitaryBranch() {
+        return militaryBranch;
+    }
+
+    public void setMilitaryBranch(String militaryBranch) {
+        this.militaryBranch = militaryBranch;
+    }
+
+    public String getConvicted() {
+        return convicted;
+    }
+
+    public void setConvicted(String convicted) {
+        this.convicted = convicted;
+    }
+
+    public String getConvictedDescription() {
+        return convictedDescription;
+    }
+
+    public void setConvictedDescription(String convictedDescription) {
+        this.convictedDescription = convictedDescription;
+    }
+
+    public int getDesiredSalary() {
+        return desiredSalary;
+    }
+
+    public void setDesiredSalary(int desiredSalary) {
+        this.desiredSalary = desiredSalary;
+    }
+
+    public String getWorkedFor() {
+        return workedFor;
+    }
+
+    public void setWorkedFor(String workedFor) {
+        this.workedFor = workedFor;
+    }
+
+    public String getWorkedForWhen() {
+        return workedForWhen;
+    }
+
+    public void setWorkedForWhen(String workedForWhen) {
+        this.workedForWhen = workedForWhen;
+    }
+
+    public String getDischargeExplain() {
+        return dischargeExplain;
+    }
+
+    public void setDischargeExplain(String dischargeExplain) {
+        this.dischargeExplain = dischargeExplain;
+    }
+
+    public boolean getSendEmail() {
+        return sendEmail;
+    }
+
+    public void setSendEmail(boolean sendEmail) {
+        this.sendEmail = sendEmail;
+    }
+}
+
+	

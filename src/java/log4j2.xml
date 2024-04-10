@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%-5p] [%-25c{2}] - %d{yyyy-MM-dd HH:mm:ss} %m%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+
+        <logger name="org.hibernate" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+
+        <logger name="com.arahant.business" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <logger name="com.arahant.services" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <logger name="com.arahant.timertasks" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <logger name="org.apache.axis.TIME" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <logger name="com.arahant" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <logger name="org.apache.axis.EXCEPTIONS" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <logger name="log4j.logger.org.hibernate.engine.StatefulPersistenceContext.ProxyWarnLog" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <logger name="org.hibernate.engine.StatefulPersistenceContext.ProxyWarnLog" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <logger name="com.arahant.utils.HibernateSessionUtil" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <logger name="org.hibernate.cache.EhCacheProvider" level="FATAL" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <logger name="org.hibernate.cache.Cache" level="FATAL" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <logger name="org.hibernate.SQL" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <logger name="org.hibernate.engine.internal.StatefulPersistenceContext" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <!--<logger name="org.hibernate.type" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>-->
+        <logger name="com.sun.xml.ws.model.RuntimeModeler" level="ERROR" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <!--
+            <category name="com.arahant.services.ServiceBase" level="DEBUG" additivity="false">
+                <AppenderRef ref="Console"/>
+            </category>
+
+            <category name="com.arahant.services.main.MainOps" level="DEBUG" additivity="false">
+                <AppenderRef ref="Console"/>
+            </category>
+        -->
+
+        <Root level="info">
+            <AppenderRef ref="Console" />
+        </Root>
+
+    </Loggers>
+</Configuration>

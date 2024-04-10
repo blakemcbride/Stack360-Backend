@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo usage: $0 [groovy file name without .groovy]
+    exit 1
+fi
+
+# This is for use in a development environment
+
+# if you are trying to run Test.groovy on use:  ./run Test
+
+java -jar KissGP.jar -cp .:../../build/web/WEB-INF/classes $1

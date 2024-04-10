@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<project name="Stack360Backend" basedir="." default="build">
+  
+  <target name="builder">
+    <javac sourcepath="builder" srcdir="builder/builder" classpath="builder/libs/commons-compress-1.20.jar:" includeantruntime="false">
+    </javac>
+  </target>
+  
+  <target name="listTasks" depends="builder">
+    <exec executable="java">
+      <arg value="-cp"/>
+      <arg value="builder:builder/libs/*"/>
+      <arg value="builder.BuildUtils"/>
+      <arg value="listTasks"/>
+    </exec>
+  </target>
+  
+  <target name="build" depends="builder">
+    <exec executable="java">
+      <arg value="-cp"/>
+      <arg value="builder:builder/libs/*"/>
+      <arg value="builder.BuildUtils"/>
+      <arg value="build"/>
+    </exec>
+  </target>
+
+  <target name="war" depends="builder">
+    <exec executable="java">
+      <arg value="-cp"/>
+      <arg value="builder:builder/libs/*"/>
+      <arg value="builder.BuildUtils"/>
+      <arg value="war"/>
+    </exec>
+  </target>
+
+  <target name="warWithoutLibs" depends="builder">
+    <exec executable="java">
+      <arg value="-cp"/>
+      <arg value="builder:builder/libs/*"/>
+      <arg value="builder.BuildUtils"/>
+      <arg value="warWithoutLibs"/>
+    </exec>
+  </target>
+
+  <target name="clean" depends="builder">
+    <exec executable="java">
+      <arg value="-cp"/>
+      <arg value="builder:builder/libs/*"/>
+      <arg value="builder.BuildUtils"/>
+      <arg value="clean"/>
+    </exec>
+  </target>
+
+  <target name="realclean" depends="builder">
+    <exec executable="java">
+      <arg value="-cp"/>
+      <arg value="builder:builder/libs/*"/>
+      <arg value="builder.BuildUtils"/>
+      <arg value="realclean"/>
+    </exec>
+  </target>
+
+  <target name="configWayToGo" depends="builder,clean">
+    <exec executable="java">
+      <arg value="-cp"/>
+      <arg value="builder:builder/libs/*"/>
+      <arg value="builder.BuildUtils"/>
+      <arg value="configWayToGo"/>
+    </exec>
+  </target>
+
+  <target name="configAdmin" depends="builder,clean">
+    <exec executable="java">
+      <arg value="-cp"/>
+      <arg value="builder:builder/libs/*"/>
+      <arg value="builder.BuildUtils"/>
+      <arg value="configAdmin"/>
+    </exec>
+  </target>
+
+  <target name="configStack360" depends="builder,clean">
+    <exec executable="java">
+      <arg value="-cp"/>
+      <arg value="builder:builder/libs/*"/>
+      <arg value="builder.BuildUtils"/>
+      <arg value="configStack360"/>
+    </exec>
+  </target>
+
+  <target name="configDemo" depends="builder,clean">
+    <exec executable="java">
+      <arg value="-cp"/>
+      <arg value="builder:builder/libs/*"/>
+      <arg value="builder.BuildUtils"/>
+      <arg value="configDemo"/>
+    </exec>
+  </target>
+
+  <target name="run" depends="">
+    <exec executable="java">
+      <arg value="-cp"/>
+      <arg value="builder:builder/libs/*"/>
+      <arg value="builder.BuildUtils"/>
+      <arg value="run"/>
+    </exec>
+  </target>
+  
+  <target name="stop" depends="">
+    <exec executable="java">
+      <arg value="-cp"/>
+      <arg value="builder:builder/libs/*"/>
+      <arg value="builder.BuildUtils"/>
+      <arg value="stop"/>
+    </exec>
+  </target>
+
+  <!-- Set the classpath-->
+  <path id="classpath">
+    <fileset dir="build/web/WEB-INF/lib">
+      <include name="*.jar" />
+    </fileset>
+    <dirset dir="build/web/WEB-INF/classes"></dirset>
+  </path>
+
+  <!-- the following is not to be used.  See CommandLine.txt  -->
+  <target name="test" depends="build">
+    <java classname="com.arahant.utils.Test" classpathref="classpath" fork="true" maxmemory="1G">
+      <!-- The following line runs the app in debug mode so that IntelliJ can debug it.  -->
+<!--      <jvmarg value="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"/>   -->
+    </java>
+  </target>
+
+  
+</project>

@@ -1,0 +1,15 @@
+
+;move down any tokens that don't exist in the child and that there isn't 
+;a higher level one in another parent
+(defrule updateTokensFromParent
+	(security_group_hierarchy (parent_security_group_id ?psg)(child_security_group_id ?csg))
+	(rights_association (security_group_id ?psg)(right_id ?rid)(access_level ?lvl))
+	(not (exists (rights_association (security_group_id ?csg)(right_id ?rid))))
+	(not (and
+		(security_group_hierarchy (parent_security_group_id ?psg2)(child_security_group_id ?csg))
+		(rights_association (security_group_id ?psg2)(right_id ?rid)(access_level ?lvl2))
+		(test (> ?lvl2 ?lvl))
+	))
+	=>
+	(assert (rights_association (security_group_id ?csg)(right_id ?rid)(access_level ?lvl)))
+)

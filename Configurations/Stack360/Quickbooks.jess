@@ -1,0 +1,146 @@
+
+(defrule qbsavingGLAccount
+	(saving GlAccount ?id)
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?id "gl_account")
+)
+
+(defrule qbsavingVendor
+	(saving VendorCompany ?id)
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?id "vendor")
+)
+
+(defrule qbsavingClient
+	(saving ClientCompany ?id)
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?id "client")
+)
+
+(defrule qbsavingCompany
+	(saving CompanyDetail ?id)
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?id "company_detail")
+)
+
+(defrule qbsavingTimesheet
+	(saving Timesheet ?id)
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?id "timesheet")
+)
+
+
+(defrule qbsavingProduct
+	(saving ProductService ?id)
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?id "product_service")
+)
+
+(defrule qbsavingProjectType
+	(saving ProjectType ?id)
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?id "project_type")
+)
+
+
+(defrule qbsavingProject
+	(saving Project ?id)
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?id "project")
+)
+
+
+(defrule qbsavingWageType
+	(saving WageType ?id)
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?id "wage_type")
+)
+
+(defrule qbsavingHRWage
+	(saving HrWage ?id)
+    (HrWage (wageId ?id)(employeeId ?pid))
+=>
+;    (printout t "Hr wage save detected" crlf)
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?pid "person")
+)
+
+
+;;;;;;;;;;;;;;
+(defrule qbsavingPerson
+	(saving Person ?pid)
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?pid "person")
+;	(printout t "Saving person " ?pid crlf)
+)
+
+(defrule qbsavingEmployee
+	(saving Employee ?pid)
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?pid "person")
+;	(printout t "Saving Emp " ?pid crlf)
+)
+
+(defrule qbsavingAddress
+	(saving Address ?aid)
+	(Address (addressId ?aid)(person ?pid))
+	(test (neq ?pid nil))
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?pid "person")
+;	(printout t "Saving employee address " ?pid crlf)
+)
+
+
+(defrule qbsavingHrEmplStatusHistory
+	(saving HrEmplStatusHistory ?aid)
+	(HrEmplStatusHistory (statusHistId ?aid)(employeeId ?pid))
+	(test (neq ?pid nil))
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?pid "person")
+;	(printout t "Saving employee address " ?pid crlf)
+)
+
+
+(defrule qbsavingBenefitJoinPaying
+	(saving HrBenefitJoin ?aid)
+	(HrBenefitJoin (benefitJoinId ?aid)(payingPersonId ?pid))
+	(test (neq ?pid nil))
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?pid "person")
+;	(printout t "Saving employee benefit join " ?pid crlf)
+)
+
+(defrule qbsavingBenefitJoinCovered
+	(saving HrBenefitJoin ?aid)
+	(HrBenefitJoin (benefitJoinId ?aid)(coveredPersonId ?pid))
+;	(test (neq ?pid nil))
+=>
+;	(printout t "Saving employee benefit join covered person " ?pid  crlf)
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?pid "person")
+)
+
+
+(defrule qbdeletingAddress
+	(deleting Address ?aid)
+	(Address (addressId ?aid)(person ?pid))
+	(test (neq ?pid nil))
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?pid "person")
+;	(printout t "deleting employee address " ?pid crlf)
+)
+
+(defrule qbdeletingBenefitJoinPaying
+	(deleting HrBenefitJoin ?aid)
+	(HrBenefitJoin (benefitJoinId ?aid)(payingPersonId ?pid))
+	(test (neq ?pid nil))
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?pid "person")
+;	(printout t "deleting employee benefit join " ?pid crlf)
+)
+(defrule qbdeletingBenefitJoinCovered
+	(deleting HrBenefitJoin ?aid)
+	(HrBenefitJoin (benefitJoinId ?aid)(coveredPersonId ?pid))
+	(test (neq ?pid nil))
+=>
+	(call com.arahant.beans.AICallbacks setQuickbooksChange ?pid "person")
+;	(printout t "deleting employee benefit join " ?pid crlf)
+)

@@ -1,0 +1,2339 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{hyperref}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\align center
+
+\size giant
+\begin_inset VSpace 1in*
+\end_inset
+
+Stack360 Build Guide
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+Blake McBride
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+Large 
+\backslash
+today}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stack360 is comprehensive web-based business process software for service-orient
+ed organizations.
+\end_layout
+
+\begin_layout Standard
+Stack360 has been a reliable solution in production for over a decade, offering
+ a suite of integrated functions tailored for service-oriented organizations.
+ This comprehensive system streamlines various business operations, including:
+\end_layout
+
+\begin_layout Itemize
+Applicant Tracking: Automate your hiring process.
+\end_layout
+
+\begin_layout Itemize
+HR (Human Resources Management): Efficiently manage your workforce.
+\end_layout
+
+\begin_layout Itemize
+Project Management: Keep your projects on track and within budget.
+\end_layout
+
+\begin_layout Itemize
+Worker Time Tracking: Worker time flows to payroll and client billing.
+\end_layout
+
+\begin_layout Itemize
+CRM (Customer Relationship Management): Manage sales prospects and clients.
+\end_layout
+
+\begin_layout Itemize
+Client Invoicing: Streamline client billing.
+\end_layout
+
+\begin_layout Itemize
+Employee Benefit Administration: Manage employee health benefits, insurance,
+ time off, etc.
+\end_layout
+
+\begin_layout Itemize
+and a lot more...
+\end_layout
+
+\begin_layout Standard
+Stack360 is also described at 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href{https://stack360.io}{stack360.io}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This repo contains the entire back-end.
+ Other repos have various front-ends.
+\end_layout
+
+\begin_layout Subsubsection*
+Technical Specifications:
+\end_layout
+
+\begin_layout Itemize
+Back-end
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Java & Groovy
+\end_layout
+
+\begin_layout Itemize
+SQL Database
+\end_layout
+
+\begin_layout Itemize
+SOAP & REST Services
+\end_layout
+
+\begin_layout Itemize
+microservices
+\end_layout
+
+\begin_layout Itemize
+Deployment to cloud or in-house
+\end_layout
+
+\begin_layout Itemize
+Deployment to Linux or Windows servers
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Front-end 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+HTML/CSS
+\end_layout
+
+\begin_layout Itemize
+JavaScript
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Stack360 also utilizes the KISS Open-source Web Development Framework 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href{https://kissweb.org}{kissweb.org}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These build instructions work on:
+\end_layout
+
+\begin_layout Itemize
+Linux
+\end_layout
+
+\begin_layout Itemize
+Mac
+\end_layout
+
+\begin_layout Itemize
+Windows
+\end_layout
+
+\begin_layout Subsubsection*
+Documentation
+\end_layout
+
+\begin_layout Standard
+In addition to the source code release, we are publishing a system manual
+ that covers system architecture, acts as a developer guide, and covers
+ system configuration.
+ It is available on 
+\emph on
+Amazon
+\emph default
+ and is called the 
+\emph on
+Stack360 System Manual
+\emph default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Staying In Touch
+\end_layout
+
+\begin_layout Standard
+By letting us know who you are, we can send you information on system and
+ documentation updates.
+ We do not share your email address or any other information with anyone.
+\end_layout
+
+\begin_layout Standard
+To let us know who you are, please send us an email to 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href{mailto:info@stack360.io}{info@stack360.io}
+\end_layout
+
+\end_inset
+
+ with the subject 
+\begin_inset Quotes eld
+\end_inset
+
+SUBSCRIBE
+\begin_inset Quotes erd
+\end_inset
+
+.
+ You can unsubscribe by sending an email to the same address with the subject
+ 
+\begin_inset Quotes eld
+\end_inset
+
+UNSUBSCRIBE
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Support
+\end_layout
+
+\begin_layout Standard
+Please help fund this project at 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://gofundme.com/stack360}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For those seeking commercial support or a commercial license, please don't
+ hesitate to reach out to 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href{mailto:support@stack360.io}{support@stack360.io}
+\end_layout
+
+\end_inset
+
+ .
+ We're here to assist you in integrating Stack360 into your business seamlessly.
+\end_layout
+
+\begin_layout Subsubsection*
+Information
+\end_layout
+
+\begin_layout Standard
+A few bits of information -
+\end_layout
+
+\begin_layout Standard
+This repository contains the whole back-end of the system.
+ Various front-ends are being made available (under the same license) in
+ sibling repositories.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stack360 has some history that will be helpful for you to understand.
+\end_layout
+
+\begin_layout Standard
+Development of Stack360 was started in 2006.
+ It was using the best technology available at that time, including:
+\end_layout
+
+\begin_layout Itemize
+Java SOAP web services 
+\end_layout
+
+\begin_layout Itemize
+SQL (we ran on PostgreSQL & Microsoft SQL server) 
+\end_layout
+
+\begin_layout Itemize
+Hibernate ORM
+\end_layout
+
+\begin_layout Standard
+All communications between the back-end and front-end are through web services.
+ The back-end never generates any front-end code.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The back-end typically runs on a Linux server either in-house or in the
+ cloud.
+ We primarily use Java 17 and PostgreSQL.
+ However, the system has also been run on Microsoft servers and Microsoft
+ SQL Server.
+ We use no vendor-specific SQL features.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The front-end was originally written in Flash but re-written in modern HTML
+ & JavaScript.
+ The front-end only requires a standard browser.
+ All common browsers are known to work.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+During the rewrite to HTML, we added REST web services, microservices, and
+ a new SQL API.
+ All of this works fine along with our pre-existing code.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We eventually culled out and moved the generic parts of our system to create
+ the Kiss Web Development framework (also open-source).
+ So, Stack360 depends on the Kiss web development framework (see 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href{https://kissweb.org}{kissweb.org}
+\end_layout
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stack360 has some historic names that you'll see floating around.
+ Just know that they're all referring to the same system.
+ These names include: Prophet, Arahant, Unifi, Stack360.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The way Stack360 is structured is a single back-end that supports multiple
+ front-ends.
+ Each front-end is seen by the web server as a separate system.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You'll need two main pieces that reside in separate repos including:
+\end_layout
+
+\begin_layout Itemize
+Stack360–Backend 
+\end_layout
+
+\begin_layout Itemize
+Stack360–Frontend (desktop front-end)
+\end_layout
+
+\begin_layout Standard
+There are several other pieces, such as a few mobile front-ends, a tablet
+ front-end that works without an Internet connection.
+ We will be releasing all of this as time permits.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The system will not run without a database.
+ Demo and production databases scripts used to populate SQL databases are
+ included with this release.
+\end_layout
+
+\begin_layout Subsubsection*
+Credits
+\end_layout
+
+\begin_layout Standard
+The Stack360 system was architected by Blake McBride and built with a team
+ of developers.
+ All documentation written by Blake McBride.
+\end_layout
+
+\begin_layout Section
+Overview
+\end_layout
+
+\begin_layout Standard
+These are the quickest and shortest instructions needed to get the system
+ up and running as fast as possible.
+ It has been tested on Linux, Mac, and Windows.
+\end_layout
+
+\begin_layout Standard
+The front-end and back-end are located in two different repos and two different
+ directories on your machine.
+ In a development environment, two separate servers run - one for the front-end
+ and one for the back-end.
+ (In a production environment, they run from the same server but as two
+ different applications from the server's perspective.)
+\end_layout
+
+\begin_layout Standard
+Through this process, you will have four windows as follows:
+\end_layout
+
+\begin_layout Itemize
+A terminal that is used to build, start, and stop the back-end
+\end_layout
+
+\begin_layout Itemize
+A terminal that will display the back-end log
+\end_layout
+
+\begin_layout Itemize
+A terminal that is used to run the front-end server
+\end_layout
+
+\begin_layout Itemize
+Your browser to access the system as a user would
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{1em}
+\end_layout
+
+\end_inset
+
+ The system mainly uses an SQL Database to store the data.
+ However, there is a big exception.
+ The system has the ability to store pictures in many areas within the system.
+ For example, job applicants may upload their resume, picture of their driver's
+ license, etc.
+ Projects often have pictures associated with them to show diagrams or pictures
+ of finished projects, etc.
+ Over time, we experienced a major problem with the database's size growing
+ in leaps and bounds.
+ It quickly became unwieldy.
+ We eventually moved all of those big uploads to external storage.
+ Cloud vendors have S3 storage that is nearly limitless and far cheaper.
+ There is a configuration in the system that tells the system where to store
+ those files.
+ (It does this intelligently so that you don't end up with too many files
+ in a single directory.)
+\end_layout
+
+\begin_layout Section
+Build Setup
+\end_layout
+
+\begin_layout Standard
+Please ensure the following requirements before starting the build procedure.
+\end_layout
+
+\begin_layout Enumerate
+This system was tested with Java 17 JDK.
+ Linux users can get this through their repo.
+ Mac and Windows users can get it from 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://jdk.java.net/archive"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+It is assumed you have a 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href{https://www.postgresql.org}{PostgreSQL}
+\end_layout
+
+\end_inset
+
+ database up and running.
+ (Any version.) On Linux, you can get PostgreSQL from your repo.
+ Mac and Windows users can get it at
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href{https://www.enterprisedb.com/downloads/postgres-postgresql-downloads}{https:/
+/www.enterprisedb.com/downloads/postgres-postgresql-downloads}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The database password must be 
+\begin_inset Quotes eld
+\end_inset
+
+postgres
+\begin_inset Quotes erd
+\end_inset
+
+ for this demo.
+ (You can configure another password later.) If it isn't, you can configure
+ it as follows:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{.5in}
+\backslash
+begin{minipage}{
+\backslash
+linewidth} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+psql postgres postgres
+\end_layout
+
+\begin_layout Plain Layout
+
+alter user postgres with password 'postgres';
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+q
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+You are starting with a fresh checkout of the repo
+\end_layout
+
+\begin_layout Enumerate
+All of these command are run from the root directory of your repo clone.
+\end_layout
+
+\begin_layout Enumerate
+On a Windows machine, you modify all the commands given by eliminating the
+ leading 
+\begin_inset Quotes eld
+\end_inset
+
+./
+\begin_inset Quotes erd
+\end_inset
+
+ from each command.
+\end_layout
+
+\begin_layout Enumerate
+You will need 
+\emph on
+groff
+\emph default
+ in order to generate many of the reports.
+ Linux users can get the full version through your repo.
+ Mac and Windows users should see 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href{https://www.gnu.org/software/groff}{https://www.gnu.org/software/groff}
+\end_layout
+
+\end_inset
+
+ On Windows you'll also need 
+\emph on
+ghostscript
+\emph default
+ installed.
+\end_layout
+
+\begin_layout Section
+Build Procedure
+\end_layout
+
+\begin_layout Enumerate
+A few preliminary things to note:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Arguments to the 
+\begin_inset Quotes eld
+\end_inset
+
+bld
+\begin_inset Quotes erd
+\end_inset
+
+ command are case-sensitive.
+ For example: 
+\begin_inset Quotes eld
+\end_inset
+
+./bld configDemo
+\begin_inset Quotes erd
+\end_inset
+
+ will work.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+./bld configdemo
+\begin_inset Quotes erd
+\end_inset
+
+ will not.
+\end_layout
+
+\begin_layout Enumerate
+On Windows the leading 
+\begin_inset Quotes eld
+\end_inset
+
+./
+\begin_inset Quotes erd
+\end_inset
+
+ on all commands should not be used.
+ In other words, on Linux or Mac you use 
+\begin_inset Quotes eld
+\end_inset
+
+./bld configDemo
+\begin_inset Quotes erd
+\end_inset
+
+.
+ On Windows you would use 
+\begin_inset Quotes eld
+\end_inset
+
+bld configDemo
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+On Linux and Mac, you may need to ensure that some of the scripts are executable
+ via: 
+\family typewriter
+chmod +x bld view-log
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The system requires a database.
+ The system comes with a demo database script named
+\family typewriter
+
+\begin_inset Newline newline
+\end_inset
+
+demo-data.sql.jar This file must be unjarred before it can be used.
+ This can be done with the following command:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{.5in}
+\backslash
+begin{minipage}{
+\backslash
+linewidth} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+jar xf demo-data.sql.jar
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage} 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Once this is done, you will have the file 
+\shape italic
+demo-data.sql
+\end_layout
+
+\begin_layout Enumerate
+We will start with the demo database, which has demo data so you can play
+ with the system.
+ Once you are ready, a blank production database script is provided.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+As configured, the system assumes the database name will be 
+\begin_inset Quotes eld
+\end_inset
+
+demo
+\begin_inset Quotes erd
+\end_inset
+
+ and the database password will be 
+\begin_inset Quotes eld
+\end_inset
+
+postgres
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This configuration can be changed.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+You'll need to load the demo database script into a database named 
+\emph on
+demo
+\emph default
+.
+ In PostgreSQL, you can do this with the following commands:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{.5in}
+\backslash
+begin{minipage}{
+\backslash
+linewidth} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+psql postgres postgres      (if system asks, the password is postgres) 
+\end_layout
+
+\begin_layout Plain Layout
+
+create database demo; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+c demo 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+i demo-data.sql 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+q
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Stack360 has its own build system that makes things really easy.
+ Build the system by typing the following command:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{.5in}
+\backslash
+begin{minipage}{
+\backslash
+linewidth} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+./bld configDemo       (Windows: bld configDemo)
+\end_layout
+
+\begin_layout Plain Layout
+
+bld setupTomcat        ONLY NEEDED ON WINDOWS (one time)
+\end_layout
+
+\begin_layout Plain Layout
+
+./bld build            (Windows: bld build)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+That will build the entire system.
+ On a fast machine, this takes less than a minute.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:System-startup"
+
+\end_inset
+
+SKIP THIS STEP ON WINDOWS.
+ The back-end server produces a log of things that are going on inside it.
+ You can monitor this log file by starting a new terminal, going to the
+ root directory of the back-end, and typing:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{.5in}
+\backslash
+begin{minipage}{
+\backslash
+linewidth} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+./view-log
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Go back to the previous terminal and start the server with the following
+ command:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{.5in}
+\backslash
+begin{minipage}{
+\backslash
+linewidth} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+./bld run             (Windows: bld run)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+You will see the other terminal that is displaying the log showing the progress
+ of the server boot.
+ It will also display any errors which you'll likely have to fix.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Bringing up the server takes at least 30 seconds up to about a minute.
+ You will know it is up when you see the last line contains the text 
+\begin_inset Quotes eld
+\end_inset
+
+Server startup
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+In a development environment (like what you're doing here), the back-end
+ and front-end run on two separate servers.
+ You need to start the front-end server.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The front-end is located in a separate repo and should be cloned to a separate
+ directory tree.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+There is no build procedure for the front-end.
+ It runs as-is.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Go into the root directory of the front-end and type the following:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{.5in}
+\backslash
+begin{minipage}{
+\backslash
+linewidth} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+./bld configStack360       (Windows: bld configStack360)
+\end_layout
+
+\begin_layout Plain Layout
+
+./serve                    (Windows: serve)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+That's it.
+ The entire system is up and running.
+ Go to your browser and enter the following:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{.5in}
+\backslash
+begin{minipage}{
+\backslash
+linewidth} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Url: http://localhost:8001
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Username: demo 
+\end_layout
+
+\begin_layout Plain Layout
+
+Password: password
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+That's it.
+ You're in.
+\end_layout
+
+\begin_layout Enumerate
+The first time you run the system, you need to tell it where you want your
+ external files stored.
+ You do this by setting a system property on a running system.
+ Once you log in, select:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Administrative Functions / System Configuration / System Properties
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Look for 
+\emph on
+EXTERNAL_FILE_ROOT
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Edit the property value to the path you'd like to use to store your external
+ files.
+\end_layout
+
+\begin_layout Enumerate
+The back-end can be debugged through port 9090 (generally using an IDE and
+ attaching to the already running process).
+ The front-end can be debugged using the browser's developer console or
+ through your IDE.
+ The whole build process, running, and debugging can be done through an
+ IDE via the included 
+\family typewriter
+build.xml
+\family default
+ 
+\emph on
+ant
+\emph default
+ file.
+\end_layout
+
+\begin_layout Enumerate
+There are some things to know that may be helpful as follows:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The system has far more screens than what you can see.
+ The demo configuration is just designed to give you a broad overview of
+ the available functionality.
+\end_layout
+
+\begin_layout Enumerate
+Each user or group of users can be defined a different hierarchy of screens
+ they are presented with.
+ This way, each user sees only the screens applicable to their job function.
+ This is done in the following two places:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Administrative Functions / System Configuration / Screens
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Human Resources / Employees & Dependents / (select an employee) / Profile
+ / Login
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The system also has an elaborate security system that can control what fields
+ different users can see and change.
+\end_layout
+
+\begin_layout Enumerate
+As configured on the demo system, the 
+\begin_inset Quotes eld
+\end_inset
+
+demo
+\begin_inset Quotes erd
+\end_inset
+
+ user is the system administrator and not an employee.
+ Therefore, there are some things you can't do with the demo user that can
+ be done with regular users.
+ For example, you can't assign a project to the demo user, edit their HR
+ record, or apply billable time to projects.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+When you're done, you need to stop the front-end server and stop the back-end
+ server.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The front-end server can be stopped by typing 
+\emph on
+Ctl-C
+\emph default
+ in the terminal that is running the 
+\family typewriter
+./serve
+\family default
+ command.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The back-end server can be stopped by going into the terminal that you used
+ to start the back-end server and typing the following.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{.5in}
+\backslash
+begin{minipage}{
+\backslash
+linewidth} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+                  (Windows: ^C to exit the command file)
+\end_layout
+
+\begin_layout Plain Layout
+
+./bld stop        (Windows: bld stop)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+You can use 
+\emph on
+Ctl-C
+\emph default
+ on the terminal that is displaying your back-end log if you're done for
+ the day.
+ Or, it can be left running for future runs of the system.
+\end_layout
+
+\begin_layout Section
+Building A Production System
+\end_layout
+
+\begin_layout Standard
+Once you are ready, you can switch to a blank database which you can use
+ in a production environment.
+ There are only two steps necessary in order to switch to a production system
+ as follows:
+\end_layout
+
+\begin_layout Enumerate
+Just like the demo database, you will require a production database.
+ The production database name is 
+\begin_inset Quotes eld
+\end_inset
+
+stack360
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Create and load the production database script with the following commands:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{.5in}
+\backslash
+begin{minipage}{
+\backslash
+linewidth} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+psql postgres postgres         (if system asks, the password is postgres)
+\end_layout
+
+\begin_layout Plain Layout
+
+create database stack360;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+c stack360
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+i stack360-data.sql
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+q
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Re-build the back-end to use the stack360 database with the following commands:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{.5in}
+\backslash
+begin{minipage}{
+\backslash
+linewidth} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+./bld configStack360           (Windows: bld configStack360)
+\end_layout
+
+\begin_layout Plain Layout
+
+bld setupTomcat                ONLY NEEDED ON WINDOWS (one time)
+\end_layout
+
+\begin_layout Plain Layout
+
+./bld build                    (Windows: bld build)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are no front-end changes.
+ You use the same front-end as with the demo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Once this is done, you can run the system as before (see steps starting
+ at step 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:System-startup"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ of the 
+\emph on
+Build Procedure
+\emph default
+).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With the production database, there is only one user in the system:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{.5in}
+\backslash
+begin{minipage}{
+\backslash
+linewidth} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Username: stack360 
+\end_layout
+
+\begin_layout Plain Layout
+
+Password: stack360
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Unfortunately, while you have everything at this point, the system is rather
+ useless without a lot of configuration.
+ All configuration can be done from within the system utilizing the configuratio
+n screens.
+\end_layout
+
+\begin_layout Standard
+In addition to many internal details, the 
+\emph on
+Stack360 System Manual
+\emph default
+ we offer provides step-by-step information on system configuration.
+\end_layout
+
+\begin_layout Section
+Production Deployment
+\end_layout
+
+\begin_layout Standard
+The stack360 database must exist on the server.
+\end_layout
+
+\begin_layout Standard
+From the web server's perspective, the back-end and front-end are two separate
+ applications.
+\end_layout
+
+\begin_layout Standard
+The back-end is deployed as a single 
+\emph on
+war
+\emph default
+ file.
+ After building the system, you can create this file with the following
+ command:
+\end_layout
+
+\begin_layout Verbatim
+
+        ./bld war           (Windows: bld war)
+\end_layout
+
+\begin_layout Standard
+This will create a file named: 
+\family typewriter
+dist/Stack360Backend.war
+\end_layout
+
+\begin_layout Standard
+That is the only file you will need to deploy the back-end.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On the front-end you can create a file to deploy by running the command:
+ 
+\end_layout
+
+\begin_layout Verbatim
+
+        ./makedist          (Windows: makedist)
+\end_layout
+
+\begin_layout Standard
+That will create a file named 
+\family typewriter
+Stack360Frontend.jar
+\family default
+ You will need to extract that file as a separate web application on the
+ server.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You can deploy that file from the webapps directory (if using 
+\emph on
+tomcat
+\emph default
+) by typing:
+\end_layout
+
+\begin_layout Verbatim
+
+        mkdir stack360 
+\end_layout
+
+\begin_layout Verbatim
+
+        cd stack360 
+\end_layout
+
+\begin_layout Verbatim
+
+        jar xvf ../Stack360Frontend.jar
+\end_layout
+
+\begin_layout Standard
+After that, a couple of files on the front-end will need to be changed in
+ order for the front-end to know where the back-end is.
+\end_layout
+
+\begin_layout Enumerate
+File: 
+\family typewriter
+framework.js
+\family default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Uncomment and update the line containing:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family typewriter
+AWS.setURL('https://[YOUR-URL]/Stack360Backend');
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+File: 
+\family typewriter
+index.html
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Set 
+\emph on
+controlCache
+\emph default
+ to true.
+\end_layout
+
+\begin_layout Enumerate
+Update 
+\emph on
+releaseDate
+\emph default
+ and 
+\emph on
+softwareVersion
+\emph default
+.
+ Their values are unimportant, except that the value assigned to 
+\emph on
+softwareVersion
+\emph default
+ must be unique each time you update the software.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+More Information
+\end_layout
+
+\begin_layout Standard
+We published a 
+\emph on
+Stack360 System Manual
+\emph default
+ through 
+\emph on
+Amazon
+\emph default
+.
+ This manual covers the system architecture, acts as a developer guide,
+ and covers system configuration.
+ Just look for the "
+\emph on
+Stack360 System Manual
+\emph default
+" on 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{https://www.amazon.com/dp/B0D1245Q1F}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

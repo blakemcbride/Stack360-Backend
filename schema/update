@@ -1,0 +1,13 @@
+#
+
+if [ -z "$1" ]  ||  [ -z "$2" ]; then
+   echo "Usage:  update  [database]  [file.sql]"
+   exit 1
+else 
+     psql $1 postgres -c "drop schema public cascade;"
+     psql $1 postgres -c "create schema public;"
+     psql $1 postgres -c "\i $2"
+fi
+
+
+

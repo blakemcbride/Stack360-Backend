@@ -1,0 +1,15 @@
+#!/usr/bin/awk -f
+BEGIN { blines=0  }
+$1!~/SET/ &&  $1!~/--/ { 
+	if ($0~/^$/) {
+		if (blines == 0) 
+			print $0
+		blines++
+	} else {
+		blines = 0
+		line = $0
+		sub(/\.swf', '[^']*'/, ".swf', ''")
+		print $0 
+	}
+}
+

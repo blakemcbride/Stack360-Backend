@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+# This one runs a groovy program while including the Stack360 class files
+# It is run from a production environment
+
+if [ $# -ne 1 ]; then
+    echo usage: $0 [groovy file name without .groovy]
+    exit 1
+fi
+
+libs=`echo ../lib/{Kiss,json}.jar`
+libs+=" "
+libs+=`echo ../../../../shared/lib/{postgresql-42.5.4,bcpg-jdk15-145,bcprov-jdk15-145,log4j-1.2-api-2.17.2,log4j-api-2.17.2,log4j-core-2.17.2,commons-compress-1.20}.jar`
+dd=${libs// /:}
+groovy -cp $dd:../classes $1
+
+#groovy -cp ../lib/Kiss.jar:../lib/json.jar:../../../../shared/lib/postgresql-42.5.4.jar:../../../../shared/lib/bcpg-jdk15-145.jar:../../../../shared/lib/bcprov-jdk15-145.jar:../classes $1

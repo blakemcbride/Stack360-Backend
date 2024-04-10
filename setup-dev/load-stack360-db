@@ -1,0 +1,60 @@
+# Loads a Stack360 postgres gzipped database making the following changes:
+#      change all passwords to 'password'
+#      eliminate all timeouts & password restrictions
+#      stop all external interfaces
+#      remove SSAN's
+
+if [ $# -ne 2 ]; then
+    echo Usage:  "$0 <local-dbname> <file-name>"
+    exit 100
+fi
+
+gzip -dc "$2" >$$.db
+
+echo Loading $2 into database $1
+export PGPASSWORD=postgres
+# psql postgres postgres <<EOF >/dev/null 2>&1
+psql postgres postgres <<EOF >out 2>&1
+create database $1;
+\c $1
+drop schema public cascade;
+create schema public;
+\i $$.db
+-- now reset the search path
+\c $1
+update prophet_login set user_password='password';
+update property set prop_value = '' where prop_name = 'PasswordExpiresAfterDays';
+update property set prop_value = '' where prop_name = 'PasswordMinimumDigits';
+update property set prop_value = '' where prop_name = 'PasswordMinimumLength';
+update property set prop_value = '' where prop_name = 'PasswordMinimumLetters';
+update property set prop_value = '' where prop_name = 'PasswordMinimumLowerCase';
+update property set prop_value = '' where prop_name = 'PasswordMinimumSpecialChars';
+update property set prop_value = '' where prop_name = 'PasswordMinimumUpperCase';
+update property set prop_value = '' where prop_name = 'PasswordReuseDays';
+update property set prop_value = '' where prop_name = 'RunADPImport';
+update property set prop_value = '0' where prop_name = 'InactiveUserMaxSeconds';
+update property set prop_value = '0' where prop_name = 'InactiveUserAlertMaxSeconds';
+update property set prop_value = '' where prop_name = 'SMTP_HOST';
+update property set prop_value = '' where prop_name = 'SMTP_PASSWORD';
+update property set prop_value = '' where prop_name = 'SMTP_SENDER_EMAIL';
+update property set prop_value = '' where prop_name = 'SMTP_SENDER_NAME';
+update property set prop_value = '' where prop_name = 'SMTP_USERNAME';
+insert into property (prop_name, prop_value, prop_desc) VALUES ('TestEnvironment', 'TRUE', 'TestEnvironment');
+update property set prop_value = 'TRUE' where prop_name = 'TestEnvironment';
+update property set prop_value = 'FALSE' where prop_name in ('DoWmCoNotifyLateBilling', 'EDIProduction', 'SendTimesheetReminders', 'RunCobraGuardInterface', 'RunHRInvoicing', 'SendBcbsEdi', 'SendBcnEdi', 'SendEbcEdi', 'SendHumanaEdi');
+update property set prop_value= '' where prop_name in ('TWILIO_LOGIN', 'TWILIO_PASSWORD', 'TWILIO_SID');
+update drc_import_enrollee set ssn='999-99-9999';
+update drc_import_enrollee_h set ssn='999-99-9999';
+update hr_employee_beneficiary set ssn='999-99-9999';
+update hr_employee_beneficiary_h set ssn='999-99-9999';
+update person set ssn='999-99-9999';
+update person_h set ssn='999-99-9999';
+\q
+EOF
+
+rm $$.db
+
+echo Done
+
+exit 0
+

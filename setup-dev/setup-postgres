@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# This file is meant to be run by setup-dev-env
+
+if [ -f .setup-postgres ]; then
+	echo Postres has been setup.
+	exit 0
+fi
+
+if ! apt-get -y install postgresql; then
+	echo apt-get install postgresql failed.
+	exit 100
+fi
+
+HBA_FILE=`cd /tmp; sudo -u postgres psql postgres postgres -c 'show hba_file;' |grep hba.conf`
+PG_VERSION=`dirname $HBA_FILE |xargs dirname |xargs basename`
+
+pg_ctlcluster $PG_VERSION main stop
+mv $HBA_FILE $HBA_FILE.orig
+cp pg_hba.conf $HBA_FILE
+chown postgres $HBA_FILE
+chgrp postgres $HBA_FILE
+chmod 640 $HBA_FILE
+pg_ctlcluster $PG_VERSION main start
+psql postgres postgres -c "alter user postgres with password 'postgres';"
+
+echo Postgres setup complete.
+
+touch .setup-postgres
+
+exit 0
+
+

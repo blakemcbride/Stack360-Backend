@@ -1,0 +1,3 @@
+build
+dist
+builder/builder/*.class

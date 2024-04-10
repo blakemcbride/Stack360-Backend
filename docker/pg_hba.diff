@@ -1,0 +1,23 @@
+--- pg_hba.conf.orig	2024-03-29 17:10:31.361207412 -0500
++++ pg_hba.conf	2024-03-29 17:15:55.151826208 -0500
+@@ -87,16 +87,16 @@
+ # maintenance (custom daily cronjobs, replication, and similar tasks).
+ #
+ # Database administrative login by Unix domain socket
+-local   all             postgres                                peer
++#local   all             postgres                                peer
+ 
+ # TYPE  DATABASE        USER            ADDRESS                 METHOD
+ 
+ # "local" is for Unix domain socket connections only
+-local   all             all                                     peer
++local   all             all                                     trust
+ # IPv4 local connections:
+-host    all             all             127.0.0.1/32            scram-sha-256
++host    all             all             127.0.0.1/32            trust
+ # IPv6 local connections:
+-host    all             all             ::1/128                 scram-sha-256
++host    all             all             ::1/128                 trust
+ # Allow replication connections from localhost, by a user with the
+ # replication privilege.
+ local   replication     all                                     peer

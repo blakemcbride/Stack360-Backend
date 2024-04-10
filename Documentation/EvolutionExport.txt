@@ -1,0 +1,99 @@
+
+Evolution Export
+(last updated 6/10/14)
+
+The export produces two different CSV files sent in two different ways
+as follows:
+
+CSV files:
+	Demographics
+	Deductions
+
+Two exports:
+
+	Employee Payroll - nothing done with the files
+
+	Evolution Export - files sent over HTTPS
+	Arahant wrote the receiving end too
+	The receiving end is currently lost but I may be able to find it.
+	It should be a relatively simple servlet though.
+
+	
+The export appears to export (fixed) salary information but not
+timeclock information.
+
+
+Demographics Fields (emp demographics, salary info)
+-------------------
+EE Code
+SSN
+First Name
+Middle Initial
+Last Name
+Address 1
+Address 2
+City
+State
+Zip Code
+Phone 1
+Current Status Code
+Original Hire Date
+Current Hire Date
+Current Term Date
+Birth Date
+Gender
+Ethinicity
+Position Status
+Pay Frequency
+Standard Hours
+Federal Marital Status
+Salary Amount
+Rate Amount
+Time Clock Number
+State
+Tax Code
+EIC
+Override Fed Tax Type
+Override Fed Tax Value
+Tax Override Type State
+Tax Override Value State
+Number of Dependents
+State Dependents
+Tax Name
+Department
+WCI
+Position
+EEO
+
+
+Deductions Fields (benefits, EFT, garnishments)
+-----------------
+EE Code
+SSN
+ED Code
+Description
+%
+Amount
+ABA Number
+Bank Account
+In Prenote
+Bank Account Type
+Target Amount
+Balance
+Effective Start Date
+Effective End Date
+Frequency
+Garnishment ID
+Custom Case Number
+FIPS Code
+Name
+Address 1
+Address 2
+City
+State
+Zip Code
+
+
+
+
+

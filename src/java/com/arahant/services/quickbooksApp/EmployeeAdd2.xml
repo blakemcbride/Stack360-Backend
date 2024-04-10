@@ -1,0 +1,52 @@
+<?xml version="1.0" ?><?qbxml version="8.0"?>
+<QBXML>
+    <QBXMLMsgsRq onError = "stopOnError">
+        <EmployeeAddRq requestID = "1">
+        <EmployeeAdd>
+            <IsActive>true</IsActive>
+            <FirstName>Sally</FirstName>
+            <MiddleName>S</MiddleName>
+            <LastName>Hired</LastName>
+            <EmployeeAddress>
+                <Addr1></Addr1>
+                <Addr2></Addr2>
+                <City></City>
+                <State></State>
+                <PostalCode></PostalCode>
+            </EmployeeAddress>
+            <Phone></Phone>
+            <Mobile>Mobile Phone:</Mobile>
+            <SSN>111-11-1112</SSN>
+            <Email>ssue@mysoftware.com</Email>
+            <Gender>Female</Gender>
+            <HiredDate>2006-01-01</HiredDate>
+            <BirthDate>1965-01-01</BirthDate>
+            <AccountNumber></AccountNumber>
+        </EmployeeAdd>
+        </EmployeeAddRq>
+        <EmployeeAddRq requestID = "2">
+        <EmployeeAdd>
+            <IsActive>true</IsActive>
+            <FirstName>Julie</FirstName>
+            <MiddleName>S</MiddleName>
+            <LastName>Hired</LastName>
+            <EmployeeAddress>
+                <Addr1></Addr1>
+                <Addr2></Addr2>
+                <City></City>
+                <State></State>
+                <PostalCode></PostalCode>
+            </EmployeeAddress>
+            <Phone></Phone>
+            <Mobile>Mobile Phone:</Mobile>
+            <SSN>111-11-1237</SSN>
+            <Email>ssue@mysoftware.com</Email>
+            <Gender>Female</Gender>
+            <HiredDate>2006-01-01</HiredDate>
+            <BirthDate>1965-01-01</BirthDate>
+            <AccountNumber></AccountNumber>
+        </EmployeeAdd>
+        </EmployeeAddRq>
+        </QBXMLMsgsRq>
+    </QBXML>
+

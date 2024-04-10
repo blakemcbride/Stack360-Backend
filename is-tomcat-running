@@ -1,0 +1,9 @@
+#
+
+if [ 0 = `ps lax |grep -v grep |grep catalina.startup.Bootstrap |wc -l` ]; then
+	echo tomcat is not running
+else
+	echo tomcat is running
+fi
+
+

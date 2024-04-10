@@ -1,0 +1,17 @@
+<?xml version="1.0" ?><?qbxml version="8.0"?>
+<QBXML>
+    <QBXMLMsgsRq onError = "stopOnError">
+        <TimeTrackingAddRq requestID = "1">
+            <TimeTrackingAdd  defMacro="00000-0000000000">
+                <TxnDate>2007-01-01</TxnDate>
+                <EntityRef>
+                    <ListID >800000E8-1355589051</ListID>
+                </EntityRef>
+                <Duration >PT10H0M</Duration>
+                <Notes >test</Notes>
+                <BillableStatus>NotBillable</BillableStatus>
+               <!-- <IsBillable >0</IsBillable>-->
+            </TimeTrackingAdd>
+        </TimeTrackingAddRq>
+    </QBXMLMsgsRq>
+</QBXML>

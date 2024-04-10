@@ -1,0 +1,21 @@
+#
+
+if [ ! -f ~/intellijProjects/Stack360-backend.tar.gz ]; then
+	echo ~/intellijProjects/Stack360-backend.tar.gz does not exist
+	exit 1
+fi
+
+if [ ! -f ~/intellijProjects/Stack360-frontend.tar.gz ]; then
+	echo ~/intellijProjects/Stack360-frontend.tar.gz does not exist
+	exit 1
+fi
+
+
+
+rm -f Stack360-backend.tar.gz Stack360-frontend.tar.gz
+ln  ~/intellijProjects/Stack360-backend.tar.gz .
+ln  ~/intellijProjects/Stack360-frontend.tar.gz .
+
+docker build -t blake1024/stack360:demo.1 -f Dockerfile.demo .
+
+rm -f Stack360-backend.tar.gz Stack360-frontend.tar.gz

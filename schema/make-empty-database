@@ -1,0 +1,14 @@
+#
+
+# This script is designed to create a starter production database
+# named stack360 from a database named demo.
+
+psql postgres postgres <<EOF
+drop database stack360;
+create database stack360;
+\c stack360
+\i ArahantSchema.sql
+\q
+EOF
+
+java -jar KissGP.jar MakeEmptyFile

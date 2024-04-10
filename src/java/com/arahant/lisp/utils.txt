@@ -1,0 +1,73 @@
+
+
+Docs for utils.lisp
+
+----------------------------------------------------------------------
+
+CLOS linkage
+
+(map-entire-jave-class class-name)
+(map-entire-java-class "com.arahant.beans.Holiday")
+
+
+(map-java-class lisp-class java-class-name)
+(map-java-class Statement "com.arahant.sql.Statement")
+
+
+; map a class method that returns some Java data
+(map-java-class-method lisp-method lisp-class java-meth-name &rest java-arg-types)
+(map-java-class-method getHSU ArahantSession "getHSU")
+
+
+; map a class method that return an instance of another CLOS class
+(map-java-class-method-with-wrapper lisp-method lisp-class java-meth-name other-class &rest java-arg-types)
+(map-java-class-method-with-wrapper getHSU ArahantSession "getHSU" HibernateSessionUtil)
+
+
+(map-java-constructor lisp-method lisp-class &rest java-arg-types)
+(map-java-constructor new Database "java.sql.Connection")
+
+
+(map-java-instance-method lisp-method lisp-class java-meth-name &rest java-arg-types)
+(map-java-instance-method execute Statement "execute" "java.lang.String")
+
+; map instance method that return an instance of another Java class which is wrapped by a CLOS class
+(map-java-instance-method-with-wrapper lisp-method lisp-class java-meth-name other-class &rest java-arg-types)
+(map-java-instance-method-with-wrapper createCriteria HibernateSessionUtil "createCriteria" HibernateCriteriaUtil "java.lang.String")
+
+
+(map-java-instance-method-return-self lisp-method lisp-class java-meth-name &rest java-arg-types)
+(map-java-instance-method-return-self orderBy HibernateCriteriaUtil "orderBy" "java.lang.String")
+
+; wrap a java object in a class object
+(wrap-java java-obj clos-class)
+
+; return the java instance object from a clos instance 
+(java-instance-object lisp-instance)
+
+----------------------------------------------------------------------
+
+Convenience macros
+
+(while what &rest code)
+
+(while-more s &rest code)
+
+(cat &rest str)
+
+(println &rest line)
+
+(list-loop lst java-rec locals &body body)
+
+(rec-loop lst lisp-rec class locals &body body)
+
+----------------------------------------------------------------------
+
+(createHCU hsu cls)
+
+(getRecord hsu class rec)
+
+----------------------------------------------------------------------
+
+Mapping Java to Lisp functions
+

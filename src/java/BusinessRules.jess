@@ -1,0 +1,232 @@
+
+(deftemplate assignableRule (slot name))
+(deftemplate benefitRule (slot accrualId)(slot person)(slot name)(slot capValue)(slot amount)(slot startDateDays)(slot longevity)(slot description)(slot resetTotal)(slot didProRate))
+
+
+(assert (assignableRule (name "Vacation")))
+(assert (assignableRule (name "Sick")))
+(assert (assignableRule (name "Personal")))
+
+;(defrule longevityCalc
+;	(employeeStartDateDays ?empStartDate)
+;	?br<-(benefitRule (startDateDays ?reportStartDate)(longevity nil))
+;	=>
+;	(modify ?br (longevity ( / (- ?reportStartDate ?empStartDate) 365)))
+;	(printout t "Got longevity" crlf)
+;)
+
+;(defrule fixStart
+;	?br<-(benefitRule (startDateDays ?reportStartDate))
+;	(test (neq ?reportStartDate nil))
+;	(employeeStartDateDays ?empStartDate)
+;	(test (> ?empStartDate ?reportStartDate))
+;	=>
+;	(modify ?br (startDateDays ?empStartDate))
+;)
+
+
+;(defrule anniversaryDates1
+;	(employeeStartDateDays ?empStartDate)
+;	=>
+;	(assert (anniversaryDate (call com.arahant.utils.JessUtils addYears ?empStartDate 1)))
+;)
+
+;(defrule anniversaryDates2
+;	(anniversaryDate ?a)
+;	(reportEndDate ?e)
+;	(test (> ?e (call com.arahant.utils.JessUtils addYears ?a 1)))
+;	=>
+;	(assert (anniversaryDate (call com.arahant.utils.JessUtils addYears ?a 1)))
+;)
+
+
+
+(defrule spanYears
+	(benefitRule (name ?n)(description ?d))
+	(anniversaryDate ?a ?ly)
+	(not (exists (benefitRule (name ?n)(startDateDays ?a))))
+	=>
+	(assert (benefitRule (name ?n)(description ?d)(startDateDays ?a)(longevity ?ly)))
+)
+
+
+(defrule TwoWeeksVacationTime
+	?r<-(benefitRule (name "Vacation")(longevity ?ly)(amount nil))
+	(test (neq ?ly nil))
+	(test (< ?ly 5))
+	(accDesc ?ad)
+	=>
+	(modify ?r (amount 80)(resetTotal true)(description (str-cat "Vacation " ?ad)))
+)
+
+(defrule ThreeWeeksVacationTime
+	?r<-(benefitRule (name "Vacation")(longevity ?ly)(amount nil))
+	(test (neq ?ly nil))
+	(test (>= ?ly 5))
+	(accDesc ?ad)
+	=>
+	(modify ?r (amount 120)(resetTotal true)(description (str-cat "Vacation " ?ad)))
+)
+
+(defrule ProRate
+	(canProRate)
+	?r<-(benefitRule (startDateDays ?s)(amount ?a)(didProRate nil)(description ?d))
+	(reportEndDate ?e)
+	(test (< ?e (call com.arahant.utils.JessUtils addYears ?s 1)))
+	(test (neq ?a nil))
+	=>
+	(modify ?r (didProRate true)(description (str-cat "Prorated " ?d))
+		(amount (* (/ (call com.arahant.utils.JessUtils subtractDates ?e ?s) 365) ?a) ) )
+)
+
+(defrule SickTime
+	?r<-(benefitRule (name "Sick")(amount nil))
+	(accDesc ?ad)
+	=>
+	(modify ?r (amount 40)(resetTotal true)(description (str-cat "Sick " ?ad)))
+)
+
+(defrule PersonalTime
+	?r<-(benefitRule (name "Personal")(amount nil))
+	(accDesc ?ad)
+	=>
+	(modify ?r (amount 24)(resetTotal true)(description (str-cat "Personal " ?ad)))
+)
+
+(do-backward-chaining HrBenefitConfig)
+(do-backward-chaining HrBenefit)
+(do-backward-chaining OrgGroupHierarchy)
+(do-backward-chaining OrgGroup)
+(do-backward-chaining Project)
+;(do-backward-chaining HrBenefitJoin)
+(do-backward-chaining HrBenefitChangeReason)
+
+;fake backward chain
+;(deftemplate I-need-HrBenefitJoin (slot hrBenefitConfigId)(slot payingPersonId))
+
+;(defrule load-BenefitJoinsByConfigAndPerson
+;	(I-need-HrBenefitJoin (hrBenefitConfigId ?beneConfId)(payingPersonId ?pid))
+;	(test
+;		(neq nil ?beneConfId)
+;	)
+;	(test (neq nil ?pid))
+;
+;=>
+;	(printout t "loading benefit join" crlf)	
+;	(bind ?hsu  (call com.arahant.utils.ArahantSession getHSU))
+;	(bind ?hcu  (call ?hsu createCriteria "com.arahant.beans.HrBenefitJoin"))
+;	(call ?hcu eq "hrBenefitConfigId" ?beneConfId)
+;	(call ?hcu eq "payingPersonId" ?pid)
+;	(call ?hcu list)
+;)
+
+
+(defrule load-Project-by-done-for-person
+	(need-Project (doneForPersonId ?pid))
+	(test (neq nil ?pid))
+=>
+	;(printout t "looking for project for this person " ?pid crlf)
+	(bind ?hsu  (call com.arahant.utils.ArahantSession getHSU))
+	(bind ?hcu  (call ?hsu createCriteria "com.arahant.beans.Project"))
+	(call (call ?hcu joinTo "doneForPerson") eq "person" ?pid)
+	(call (call ?hcu joinTo "projectStatus") eq "active" (new java.lang.Character Y))
+	(call ?hcu list)
+)
+
+(defrule load-HRBenefitByCategory
+	(need-HrBenefit (hrBenefitCategoryId ?bcId))
+	(test
+		(neq ?bcId nil)
+	)
+=>
+;	(printout t "loading benefits by category " ?bcId crlf)
+	(bind ?hsu  (call com.arahant.utils.ArahantSession getHSU))
+	(bind ?hcu  (call ?hsu createCriteria "com.arahant.beans.HrBenefit"))
+	(call ?hcu eq "hrBenefitCategoryId" ?bcId)
+	(call ?hcu list)
+)
+
+(defrule load-OrgGroupHierarchy
+    (need-OrgGroupHierarchy (childGroupId ?child)(parentGroupId ?parent))
+;	(test (neq nil ?child))
+;	(test (neq nil ?parent))
+=>
+   ; (printout t "need org group hierarchy " ?child " " ?parent crlf)
+    (call com.arahant.business.BOrgGroup loadHierarchy ?child ?parent)
+)
+(defrule load-OrgGroup
+    (need-OrgGroup (orgGroupId ?ogid))
+	(test (neq nil ?ogid))
+=>
+;    (printout t "need org group  " ?ogid crlf)
+    (bind ?hsu  (call com.arahant.utils.ArahantSession getHSU))
+	(call ?hsu get "com.arahant.beans.OrgGroup" ?ogid)
+)
+
+(defrule load-HrBenefitChangeReason
+	(need-HrBenefitChangeReason (hrBenefitChangeReasonId ?id))
+	(test (neq nil ?id))
+=>
+	(bind ?hsu  (call com.arahant.utils.ArahantSession getHSU))
+	(call ?hsu get "com.arahant.beans.HrBenefitChangeReason" ?id)
+)
+
+(defrule load-HrBenefitConfig
+	(need-HrBenefitConfig (benefitConfigId ?configId))
+	(test (neq nil ?configId))
+=>
+;	(printout t "loading config" crlf)	
+	(bind ?hsu  (call com.arahant.utils.ArahantSession getHSU))
+	(call ?hsu get "com.arahant.beans.HrBenefitConfig" ?configId)
+)
+
+(defrule load-HrBenefitConfigsByBenefit
+	(need-HrBenefitConfig (benefitId ?beneId))
+	(test
+		(neq ?beneId nil)
+	)
+=>
+	(printout t "loading config" crlf)	
+	(bind ?hsu  (call com.arahant.utils.ArahantSession getHSU))
+	(bind ?hcu  (call ?hsu createCriteria "com.arahant.beans.HrBenefitConfig"))
+	(call ?hcu eq "benefitId" ?beneId)
+	(call ?hcu list)
+)
+
+(defrule load-HrBenefit
+	(need-HrBenefit (benefitId ?bId))
+	(test (neq nil ?bId))
+=>
+;	(printout t "loading benefit" crlf)	
+	(bind ?hsu  (call com.arahant.utils.ArahantSession getHSU))
+	(call ?hsu get "com.arahant.beans.HrBenefit" ?bId)
+)
+
+
+
+(assert (today (call com.arahant.utils.DateUtils now)))
+
+
+(defrule setCobraPPY
+	?f<-(HrBenefitJoin (OBJECT ?obj)(usingCOBRA Y)(ppy ~12))
+=>
+	(call ?obj setPpy 12)
+)
+
+
+;(defrule run-over-coverage-sanity-check
+;	(saving HrBenefitJoin ?id)
+;	(HrBenefitJoin (benefitJoinId ?id)(OBJECT ?obj))		
+;=>
+;	(printout t "run sanity check" crlf)	
+;	(bind ?bbj  (new com.arahant.business.BHRBenefitJoin ?obj))
+;	(call com.arahant.business.BHRBenefitJoin overCoverageSanityCheck ?id)
+;)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;(defrule testValidate
+;	(saving HrBenefitJoin ?id)
+;=>	
+;	(throw (new com.arahant.exceptions.ArahantWarning "Can't do that"))
+;)
+	 

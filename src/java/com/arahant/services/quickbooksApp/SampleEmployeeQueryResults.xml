@@ -1,0 +1,211 @@
+<?xml version="1.0" ?><?qbxml version="8.0"?>
+<QBXML>
+    <QBXMLMsgsRq onError="stopOnError">
+        <EmployeeQueryRq requestID="3" >
+            <FromModifiedDate>1969-12-31T18:00:00</FromModifiedDate>
+        </EmployeeQueryRq>
+    </QBXMLMsgsRq>
+</QBXML>
+<?xml version="1.0" ?>
+<QBXML>
+    <QBXMLMsgsRs>
+        <EmployeeQueryRs requestID="3" statusCode="0" statusSeverity="Info" statusMessage="Status OK">
+            <EmployeeRet>
+                <ListID>370000-933272659</ListID>
+                <TimeCreated>1999-07-29T13:24:19-06:00</TimeCreated>
+                <TimeModified>2012-12-15T11:59:27-06:00</TimeModified>
+                <EditSequence>1355594367</EditSequence>
+                <Name>Dan T. Miller</Name>
+                <IsActive>true</IsActive>
+                <FirstName>Dan</FirstName>
+                <MiddleName>T.</MiddleName>
+                <LastName>Miller</LastName>
+                <EmployeeAddress>
+                    <Addr1>195 Spruce Ave, #202</Addr1>
+                    <City>Bayshore</City>
+                    <State>CA</State>
+                    <PostalCode>94326</PostalCode>
+                </EmployeeAddress>
+                <PrintAs>Dan Miller</PrintAs>
+                <Phone>555-2601</Phone>
+                <SSN>333-44-5555</SSN>
+                <EmployeeType>Regular</EmployeeType>
+                <HiredDate>2011-11-01</HiredDate>
+                <EmployeePayrollInfo>
+                    <PayPeriod>Biweekly</PayPeriod>
+                    <Earnings>
+                        <PayrollItemWageRef>
+                            <ListID>10000-933272656</ListID>
+                            <FullName>Salary</FullName>
+                        </PayrollItemWageRef>
+                        <Rate>41500.00</Rate>
+                    </Earnings>
+                    <UseTimeDataToCreatePaychecks>DoNotUseTimeData</UseTimeDataToCreatePaychecks>
+                    <SickHours>
+                        <HoursAvailable>PT20H0M0S</HoursAvailable>
+                        <AccrualPeriod>BeginningOfYear</AccrualPeriod>
+                        <HoursAccrued>PT40H0M0S</HoursAccrued>
+                        <MaximumHours>PT0H0M0S</MaximumHours>
+                        <IsResettingHoursEachNewYear>true</IsResettingHoursEachNewYear>
+                        <HoursUsed>PT0H0M0S</HoursUsed>
+                        <AccrualStartDate>2011-11-01</AccrualStartDate>
+                    </SickHours>
+                    <VacationHours>
+                        <HoursAvailable>PT255H30M0S</HoursAvailable>
+                        <AccrualPeriod>EveryPaycheck</AccrualPeriod>
+                        <HoursAccrued>PT6H45M0S</HoursAccrued>
+                        <MaximumHours>PT0H0M0S</MaximumHours>
+                        <IsResettingHoursEachNewYear>false</IsResettingHoursEachNewYear>
+                        <HoursUsed>PT0H0M0S</HoursUsed>
+                        <AccrualStartDate>2011-11-01</AccrualStartDate>
+                    </VacationHours>
+                </EmployeePayrollInfo>
+            </EmployeeRet>
+            <EmployeeRet>
+                <ListID>380000-933272659</ListID>
+                <TimeCreated>1999-07-29T13:24:19-06:00</TimeCreated>
+                <TimeModified>2012-12-15T11:59:27-06:00</TimeModified>
+                <EditSequence>1355594367</EditSequence>
+                <Name>Elizabeth N. Mason</Name>
+                <IsActive>true</IsActive>
+                <FirstName>Elizabeth</FirstName>
+                <MiddleName>N.</MiddleName>
+                <LastName>Mason</LastName>
+                <EmployeeAddress>
+                    <Addr1>29 Cedar Street</Addr1>
+                    <City>Middlefield</City>
+                    <State>CA</State>
+                    <PostalCode>93210</PostalCode>
+                </EmployeeAddress>
+                <PrintAs>Elizabeth N. Mason</PrintAs>
+                <Phone>457-8965</Phone>
+                <SSN>569-87-1234</SSN>
+                <EmployeeType>Regular</EmployeeType>
+                <HiredDate>2012-03-15</HiredDate>
+                <EmployeePayrollInfo>
+                    <PayPeriod>Biweekly</PayPeriod>
+                    <Earnings>
+                        <PayrollItemWageRef>
+                            <ListID>50000-933272657</ListID>
+                            <FullName>Regular Pay</FullName>
+                        </PayrollItemWageRef>
+                        <Rate>14.75</Rate>
+                    </Earnings>
+                    <Earnings>
+                        <PayrollItemWageRef>
+                            <ListID>170000-1197755365</ListID>
+                            <FullName>Overtime Rate</FullName>
+                        </PayrollItemWageRef>
+                        <Rate>22.13</Rate>
+                    </Earnings>
+                    <Earnings>
+                        <PayrollItemWageRef>
+                            <ListID>60000-933272657</ListID>
+                            <FullName>Sick Hourly</FullName>
+                        </PayrollItemWageRef>
+                        <Rate>14.75</Rate>
+                    </Earnings>
+                    <Earnings>
+                        <PayrollItemWageRef>
+                            <ListID>70000-933272657</ListID>
+                            <FullName>Vacation Hourly</FullName>
+                        </PayrollItemWageRef>
+                        <Rate>14.75</Rate>
+                    </Earnings>
+                    <UseTimeDataToCreatePaychecks>DoNotUseTimeData</UseTimeDataToCreatePaychecks>
+                    <SickHours>
+                        <HoursAvailable>PT3H0M0S</HoursAvailable>
+                        <AccrualPeriod>BeginningOfYear</AccrualPeriod>
+                        <HoursAccrued>PT40H0M0S</HoursAccrued>
+                        <MaximumHours>PT0H0M0S</MaximumHours>
+                        <IsResettingHoursEachNewYear>true</IsResettingHoursEachNewYear>
+                        <HoursUsed>PT0H0M0S</HoursUsed>
+                        <AccrualStartDate>2012-03-15</AccrualStartDate>
+                    </SickHours>
+                    <VacationHours>
+                        <HoursAvailable>PT158H15M0S</HoursAvailable>
+                        <AccrualPeriod>EveryPaycheck</AccrualPeriod>
+                        <HoursAccrued>PT6H45M0S</HoursAccrued>
+                        <MaximumHours>PT0H0M0S</MaximumHours>
+                        <IsResettingHoursEachNewYear>false</IsResettingHoursEachNewYear>
+                        <HoursUsed>PT0H0M0S</HoursUsed>
+                        <AccrualStartDate>2012-03-15</AccrualStartDate>
+                    </VacationHours>
+                </EmployeePayrollInfo>
+            </EmployeeRet>
+            <EmployeeRet>
+                <ListID>390000-933272659</ListID>
+                <TimeCreated>1999-07-29T13:24:19-06:00</TimeCreated>
+                <TimeModified>2012-12-15T11:59:27-06:00</TimeModified>
+                <EditSequence>1355594367</EditSequence>
+                <Name>Gregg O. Schneider</Name>
+                <IsActive>true</IsActive>
+                <FirstName>Gregg</FirstName>
+                <MiddleName>O.</MiddleName>
+                <LastName>Schneider</LastName>
+                <EmployeeAddress>
+                    <Addr1>331 Poplar Rd</Addr1>
+                    <City>Bayshore</City>
+                    <State>CA</State>
+                    <PostalCode>94326</PostalCode>
+                </EmployeeAddress>
+                <PrintAs>Gregg O. Schneider</PrintAs>
+                <Phone>555-3286</Phone>
+                <SSN>444-55-6666</SSN>
+                <EmployeeType>Regular</EmployeeType>
+                <HiredDate>2012-06-15</HiredDate>
+                <EmployeePayrollInfo>
+                    <PayPeriod>Biweekly</PayPeriod>
+                    <Earnings>
+                        <PayrollItemWageRef>
+                            <ListID>50000-933272657</ListID>
+                            <FullName>Regular Pay</FullName>
+                        </PayrollItemWageRef>
+                        <Rate>17.25</Rate>
+                    </Earnings>
+                    <Earnings>
+                        <PayrollItemWageRef>
+                            <ListID>170000-1197755365</ListID>
+                            <FullName>Overtime Rate</FullName>
+                        </PayrollItemWageRef>
+                        <Rate>25.88</Rate>
+                    </Earnings>
+                    <Earnings>
+                        <PayrollItemWageRef>
+                            <ListID>60000-933272657</ListID>
+                            <FullName>Sick Hourly</FullName>
+                        </PayrollItemWageRef>
+                        <Rate>17.25</Rate>
+                    </Earnings>
+                    <Earnings>
+                        <PayrollItemWageRef>
+                            <ListID>70000-933272657</ListID>
+                            <FullName>Vacation Hourly</FullName>
+                        </PayrollItemWageRef>
+                        <Rate>17.25</Rate>
+                    </Earnings>
+                    <UseTimeDataToCreatePaychecks>DoNotUseTimeData</UseTimeDataToCreatePaychecks>
+                    <SickHours>
+                        <HoursAvailable>PT16H0M0S</HoursAvailable>
+                        <AccrualPeriod>BeginningOfYear</AccrualPeriod>
+                        <HoursAccrued>PT40H0M0S</HoursAccrued>
+                        <MaximumHours>PT0H0M0S</MaximumHours>
+                        <IsResettingHoursEachNewYear>true</IsResettingHoursEachNewYear>
+                        <HoursUsed>PT0H0M0S</HoursUsed>
+                        <AccrualStartDate>2012-06-15</AccrualStartDate>
+                    </SickHours>
+                    <VacationHours>
+                        <HoursAvailable>PT179H45M0S</HoursAvailable>
+                        <AccrualPeriod>EveryPaycheck</AccrualPeriod>
+                        <HoursAccrued>PT6H45M0S</HoursAccrued>
+                        <MaximumHours>PT0H0M0S</MaximumHours>
+                        <IsResettingHoursEachNewYear>false</IsResettingHoursEachNewYear>
+                        <HoursUsed>PT0H0M0S</HoursUsed>
+                        <AccrualStartDate>2012-06-15</AccrualStartDate>
+                    </VacationHours>
+                </EmployeePayrollInfo>
+            </EmployeeRet>
+        </EmployeeQueryRs>
+    </QBXMLMsgsRs>
+</QBXML>
+
