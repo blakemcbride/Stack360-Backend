@@ -57,12 +57,6 @@ The complete source code of Stack360 is now available under the GNU
 General Public License Version 3, inviting developers and businesses
 to contribute to and benefit from this powerful tool.
 
-### Full System Documentation
-
-Through [Amazon](https://amazon.com/dp/B0D1245Q1F), we published the "Stack360
-System Manual".  This manual documents the architecture of the system,
-acts as a developer guide, and covers system configuration.
-
 ### Docker Image
 
 We also have the full system available as a docker image at
@@ -73,6 +67,13 @@ up and running for evaluation purposes.  However, these images are not
 intended to be of value for development or production use.  This repo
 is for that.
 
+### Getting Started
+
+See the file named [Stack360-build-guide.pdf](Stack360-build-guide.pdf) for build instructions.
+
+Additionally, through [Amazon](https://amazon.com/dp/B0D1245Q1F), we published the "Stack360
+System Manual".  This manual documents the architecture of the system,
+acts as a developer guide, and covers system configuration.
 
 ### Commercial Support and Licensing:
 
@@ -81,9 +82,6 @@ don't hesitate to reach out. We're here to assist you in integrating
 Stack360 into your business seamlessly.  See our website at
 [stack360.io](https://stack360.io)
 
-### Getting Started
-
-See the file named *Stack360-build-guide.pdf*
 
 ### Join the Stack360 Community
 
