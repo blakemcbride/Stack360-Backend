@@ -69,10 +69,10 @@ is for that.
 
 ### Getting Started
 
-See the file named [Stack360-build-guide.pdf](Stack360-build-guide.pdf) for build instructions.
+See the file named [Stack360-build-guide.pdf](https://blakemcbride.github.io/Stack360-Backend/Stack360-build-guide.pdf) for build instructions.
 
-Additionally, through [Amazon](https://amazon.com/dp/B0D1245Q1F), we published the "Stack360
-System Manual".  This manual documents the architecture of the system,
+Additionally, through Amazon, we published the [Stack360
+System Manual](https://amazon.com/dp/B0D1245Q1F).  This manual documents the architecture of the system,
 acts as a developer guide, and covers system configuration.
 
 ### Commercial Support and Licensing:
